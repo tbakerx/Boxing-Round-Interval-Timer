@@ -4,11 +4,9 @@ import { StyleSheet, Text, Button } from 'react-native'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/useStores'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { timerProfiles } from '../profiles/timerProfiles'
 
 const Home = () => {
-  const { settingsStore, timerStore } = useStores()
-  const profiles = timerProfiles
+  const { timerStore } = useStores()
 
   return (
     <SafeAreaView>
