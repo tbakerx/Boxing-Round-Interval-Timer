@@ -1,8 +1,36 @@
 import { observable, action } from 'mobx'
 
 class TimerStore {
-  @observable testStore = 'Timer Store'
-  constructor() {}
+  @observable title
+  @observable numberRounds
+  @observable duration
+  @observable rest
+  @observable currTimerVal
+  @observable isRunning
+
+  constructor() {
+    this.title = 'Classic'
+    this.numberRounds = 12
+    this.duration = 180
+    this.rest = 60
+    this.currTimerVal = this.duration
+    this.isRunning = false
+  }
+
+  @action loadProfile = (profile) => {
+    this.title = profile.title
+    this.numberRounds = profile.numberRounds
+    this.duration = profile.duration
+    this.rest = profile.rest
+    this.currTimerVal = profile.duration
+    this.isRunning = false
+  }
+
+  @action startTimer = () => {}
+
+  @action stopTimer = () => {}
+
+  @action resetTimer = () => {}
 }
 
 export default TimerStore
