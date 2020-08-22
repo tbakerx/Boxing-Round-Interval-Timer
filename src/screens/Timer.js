@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import Timer from 'react-compound-timer'
 
@@ -7,13 +7,16 @@ const toSeconds = (value) => {
 }
 
 const TimerScreen = () => {
+  const mainTimer = useRef()
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Timer
+        ref={mainTimer}
         initialTime={toSeconds(60)}
         direction="backward"
         startImmediately={false}
         timeToUpdate={10}
+        formatValue={(value) => `${value < 10 ? `0${value}` : value}`}
         checkpoints={[
           {
             time: toSeconds(10),
@@ -24,18 +27,42 @@ const TimerScreen = () => {
             callback: () => alert('countdown finished')
           }
         ]}>
-        <Text style={{ fontFamily: 'Helvetica Neue' }}>
-          <Text style={{ fontSize: 32 }}>
-            <Timer.Minutes />
-            <Text>:</Text>
-            <Timer.Seconds />
+        <View>
+          <Text style={{ fontFamily: 'Helvetica Neue' }}>
+            <Text style={{ fontSize: 32 }}>
+              <Timer.Minutes />
+              <Text>:</Text>
+              <Timer.Seconds />
+            </Text>
           </Text>
-        </Text>
+          <TouchableOpacity onPress={() => mainTimer.current.start()}>
+            <View style={styles.timerButton}>
+              <Text>Start Timer</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => mainTimer.current.pause()}>
+            <View style={styles.timerButton}>
+              <Text>Pause Timer</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => mainTimer.current.reset()}>
+            <View style={styles.timerButton}>
+              <Text>Restart Timer</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </Timer>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  timerButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'blue',
+    borderWidth: 1
+  }
+})
 
 export default TimerScreen
