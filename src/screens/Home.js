@@ -1,11 +1,10 @@
-import 'react-native-gesture-handler'
 import React from 'react'
 import { StyleSheet, Text, Button } from 'react-native'
 import { observer } from 'mobx-react'
 import { useStores } from '../hooks/useStores'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const Home = () => {
+const HomeScreen = () => {
   const { timerStore } = useStores()
 
   return (
@@ -35,4 +34,4 @@ const Home = () => {
 
 const styles = StyleSheet.create({})
 
-export default observer(Home)
+export default observer(HomeScreen)
