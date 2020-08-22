@@ -1,11 +1,10 @@
-import 'react-native-gesture-handler'
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
 
-const Settings = () => {
+const SettingsScreen = () => {
   return <Text>Settings Page</Text>
 }
 
 const styles = StyleSheet.create({})
 
-export default Settings
+export default SettingsScreen
