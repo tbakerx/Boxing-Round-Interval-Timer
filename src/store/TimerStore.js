@@ -9,8 +9,9 @@ class TimerStore {
   @observable isRunning
 
   constructor() {
-    this.title = 'Classic'
+    this.title = 'Default'
     this.numberRounds = 12
+    this.currRound = 1
     this.duration = 180
     this.rest = 60
     this.currTimerVal = this.duration
@@ -31,6 +32,10 @@ class TimerStore {
   @action stopTimer = () => {}
 
   @action resetTimer = () => {}
+
+  @action incrementRound = () => {
+    this.currRound++
+  }
 }
 
 export default TimerStore
