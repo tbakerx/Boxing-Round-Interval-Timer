@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import {observer} from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
@@ -16,7 +17,7 @@ const TimerScreen = () => {
       <Text>{timerStore.currRound}</Text>
       <Timer
         ref={mainTimer}
-        initialTime={toSeconds(60)}
+        initialTime={toSeconds(3)}
         direction="backward"
         startImmediately={false}
         timeToUpdate={10}
@@ -28,7 +29,10 @@ const TimerScreen = () => {
           },
           {
             time: 0,
-            callback: () => timerStore.incrementRound()
+            callback: () => {
+              timerStore.incrementRound()
+              mainTimer.current.reset()
+              mainTimer.current.start()}
           }
         ]}>
         <View>
@@ -69,4 +73,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TimerScreen
+export default observer(TimerScreen)

@@ -6,6 +6,7 @@ class TimerStore {
   @observable duration
   @observable rest
   @observable currTimerVal
+  @observable currRound
   @observable isRunning
 
   constructor() {
@@ -24,6 +25,7 @@ class TimerStore {
     this.duration = profile.duration
     this.rest = profile.rest
     this.currTimerVal = profile.duration
+    this.currRound = 1
     this.isRunning = false
   }
 
