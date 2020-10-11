@@ -11,11 +11,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		26AC12D0924DDF538A02794A /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF43325E9F41DD49BA4AB3C5 /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* boxingRoundIntervalTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* boxingRoundIntervalTimerTests.m */; };
+		660EF5388680116743493B66 /* libPods-boxingRoundIntervalTimer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B80CAC3D643BCBAFDC6B4C7B /* libPods-boxingRoundIntervalTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */; };
+		F1062DBDD462C26AD1EB97A9 /* libPods-boxingRoundIntervalTimer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +50,23 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = boxingRoundIntervalTimer/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = boxingRoundIntervalTimer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = boxingRoundIntervalTimer/main.m; sourceTree = "<group>"; };
+		13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE9732A58F4771E4A560A7E /* Pods-boxingRoundIntervalTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer.release.xcconfig"; sourceTree = "<group>"; };
+		5DA72EFF7336CFE5B45F1127 /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6FE3DEA589118E135F61C2AE /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E0350951D2F69B9C99AB115 /* Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOS/Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boxingRoundIntervalTimer/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8412A4B6E6BA512104B01B93 /* Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOS/Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		AF43325E9F41DD49BA4AB3C5 /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6836B8A28788B5BDB773705 /* Pods-boxingRoundIntervalTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AC12D0924DDF538A02794A /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80CAC3D643BCBAFDC6B4C7B /* libPods-boxingRoundIntervalTimer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660EF5388680116743493B66 /* libPods-boxingRoundIntervalTimer-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1062DBDD462C26AD1EB97A9 /* libPods-boxingRoundIntervalTimer-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +141,28 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */,
+				AF43325E9F41DD49BA4AB3C5 /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a */,
+				F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */,
+				BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6595A3D14EA5D7C3A1604FA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6836B8A28788B5BDB773705 /* Pods-boxingRoundIntervalTimer.debug.xcconfig */,
+				5BE9732A58F4771E4A560A7E /* Pods-boxingRoundIntervalTimer.release.xcconfig */,
+				5DA72EFF7336CFE5B45F1127 /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig */,
+				6FE3DEA589118E135F61C2AE /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig */,
+				8412A4B6E6BA512104B01B93 /* Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig */,
+				7E0350951D2F69B9C99AB115 /* Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig */,
+				FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */,
+				13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -140,6 +180,7 @@
 				00E356EF1AD99517003FC87E /* boxingRoundIntervalTimerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				6595A3D14EA5D7C3A1604FA2 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -164,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimerTests" */;
 			buildPhases = (
+				7219AB94E7C7F38ADB16B4DC /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				94F45D68D64FBF9F86B435E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,11 +225,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer" */;
 			buildPhases = (
+				4ADF99A941654A7EE96CB6E5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				DF230299C73A6972C211B11A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,6 +246,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOS" */;
 			buildPhases = (
+				DA04CEED255C3ADA4DD52F8E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -220,6 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOSTests" */;
 			buildPhases = (
+				6F97359AF18DB74C040D90CA /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -344,6 +391,130 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		4ADF99A941654A7EE96CB6E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boxingRoundIntervalTimer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F97359AF18DB74C040D90CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boxingRoundIntervalTimer-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7219AB94E7C7F38ADB16B4DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94F45D68D64FBF9F86B435E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA04CEED255C3ADA4DD52F8E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-boxingRoundIntervalTimer-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF230299C73A6972C211B11A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +608,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DA72EFF7336CFE5B45F1127 /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -459,6 +631,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FE3DEA589118E135F61C2AE /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -478,6 +651,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6836B8A28788B5BDB773705 /* Pods-boxingRoundIntervalTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -500,6 +674,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BE9732A58F4771E4A560A7E /* Pods-boxingRoundIntervalTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -520,6 +695,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8412A4B6E6BA512104B01B93 /* Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -547,6 +723,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E0350951D2F69B9C99AB115 /* Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -574,6 +751,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -600,6 +778,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

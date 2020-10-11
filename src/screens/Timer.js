@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'blue',
     borderWidth: 1
-  }
+    }
 })
 
 export default TimerScreen
