@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import {observer} from 'mobx-react'
+import { observer } from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
@@ -32,7 +32,8 @@ const TimerScreen = () => {
             callback: () => {
               timerStore.incrementRound()
               mainTimer.current.reset()
-              mainTimer.current.start()}
+              mainTimer.current.start()
+            }
           }
         ]}>
         <View>
@@ -53,7 +54,12 @@ const TimerScreen = () => {
               <Text>Pause Timer</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => mainTimer.current.reset()}>
+          <TouchableOpacity
+            onPress={() => {
+              mainTimer.current.reset()
+              mainTimer.current.pause()
+              timerStore.currRound = 1
+            }}>
             <View style={styles.timerButton}>
               <Text>Restart Timer</Text>
             </View>
