@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {useStores} from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 
 const toSeconds = (value) => {
@@ -8,8 +9,10 @@ const toSeconds = (value) => {
 
 const TimerScreen = () => {
   const mainTimer = useRef()
+  const {timerStore} = useStores()
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>{timerStore.title}</Text>
       <Timer
         ref={mainTimer}
         initialTime={toSeconds(60)}
