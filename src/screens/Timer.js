@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import { observer } from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useStores } from '../hooks/useStores'
