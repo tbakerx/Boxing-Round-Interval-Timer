@@ -17,7 +17,7 @@ const TimerScreen = () => {
       <Text>{timerStore.currRound}</Text>
       <Timer
         ref={mainTimer}
-        initialTime={toSeconds(timerStore.duration)}
+        initialTime={toSeconds(timerStore.roundDuration)}
         direction="backward"
         startImmediately={false}
         timeToUpdate={10}
@@ -31,13 +31,13 @@ const TimerScreen = () => {
             time: 0,
             callback: () => {
               if (timerStore.isRest) {
-                mainTimer.current.setTime(toSeconds(timerStore.duration))
+                mainTimer.current.setTime(toSeconds(timerStore.roundDuration))
                 mainTimer.current.start()
                 timerStore.incrementRound()
               } else {
                 if (timerStore.currRound == timerStore.numRounds) {
-                  timerStore.reset()
-                  mainTimer.current.resetTimerStore()
+                  timerStore.resetTimerStore()
+                  mainTimer.current.reset()
                 } else {
                   mainTimer.current.setTime(toSeconds(timerStore.restDuration))
                   mainTimer.current.start()
