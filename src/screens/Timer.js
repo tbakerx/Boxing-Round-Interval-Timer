@@ -17,7 +17,7 @@ const TimerScreen = () => {
       <Text>{timerStore.currRound}</Text>
       <Timer
         ref={mainTimer}
-        initialTime={toSeconds(3)}
+        initialTime={toSeconds(60)}
         direction="backward"
         startImmediately={false}
         timeToUpdate={10}

@@ -10,7 +10,7 @@ class TimerStore {
   @observable isRunning
 
   constructor() {
-    this.title = 'Default'
+    this.title = 'Classic'
     this.numberRounds = 12
     this.currRound = 1
     this.duration = 180

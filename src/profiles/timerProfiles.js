@@ -1,6 +1,6 @@
 export const timerProfiles = [
   {
-    title: 'Default',
+    title: 'Classic',
     numberRounds: 12,
     duration: 180,
     rest: 60
