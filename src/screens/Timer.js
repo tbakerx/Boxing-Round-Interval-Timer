@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
+import { observer } from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import {useStores} from '../hooks/useStores'
+import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 
 const toSeconds = (value) => {
@@ -9,10 +10,11 @@ const toSeconds = (value) => {
 
 const TimerScreen = () => {
   const mainTimer = useRef()
-  const {timerStore} = useStores()
+  const { timerStore } = useStores()
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>{timerStore.title}</Text>
+      <Text>{timerStore.currRound}</Text>
       <Timer
         ref={mainTimer}
         initialTime={toSeconds(60)}
@@ -27,7 +29,11 @@ const TimerScreen = () => {
           },
           {
             time: 0,
-            callback: () => alert('countdown finished')
+            callback: () => {
+              timerStore.incrementRound()
+              mainTimer.current.reset()
+              mainTimer.current.start()
+            }
           }
         ]}>
         <View>
@@ -48,7 +54,12 @@ const TimerScreen = () => {
               <Text>Pause Timer</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => mainTimer.current.reset()}>
+          <TouchableOpacity
+            onPress={() => {
+              mainTimer.current.reset()
+              mainTimer.current.pause()
+              timerStore.currRound = 1
+            }}>
             <View style={styles.timerButton}>
               <Text>Restart Timer</Text>
             </View>
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'blue',
     borderWidth: 1
-    }
+  }
 })
 
-export default TimerScreen
+export default observer(TimerScreen)

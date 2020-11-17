@@ -6,11 +6,13 @@ class TimerStore {
   @observable duration
   @observable rest
   @observable currTimerVal
+  @observable currRound
   @observable isRunning
 
   constructor() {
     this.title = 'Classic'
     this.numberRounds = 12
+    this.currRound = 1
     this.duration = 180
     this.rest = 60
     this.currTimerVal = this.duration
@@ -23,6 +25,7 @@ class TimerStore {
     this.duration = profile.duration
     this.rest = profile.rest
     this.currTimerVal = profile.duration
+    this.currRound = 1
     this.isRunning = false
   }
 
@@ -31,6 +34,10 @@ class TimerStore {
   @action stopTimer = () => {}
 
   @action resetTimer = () => {}
+
+  @action incrementRound = () => {
+    this.currRound++
+  }
 }
 
 export default TimerStore
