@@ -30,18 +30,18 @@ const TimerScreen = () => {
           {
             time: 0,
             callback: () => {
-              if (timerStore.isBreak == true) {
+              if (timerStore.isRest) {
                 mainTimer.current.setTime(toSeconds(timerStore.duration))
                 mainTimer.current.start()
                 timerStore.incrementRound()
               } else {
                 if (timerStore.currRound == timerStore.numRounds) {
                   timerStore.reset()
-                  mainTimer.current.resetStore()
+                  mainTimer.current.resetTimerStore()
                 } else {
-                  mainTimer.current.setTime(toSeconds(timerStore.rest))
+                  mainTimer.current.setTime(toSeconds(timerStore.restDuration))
                   mainTimer.current.start()
-                  timerStore.runBreak()
+                  timerStore.setRest()
                 }
               }
             }
