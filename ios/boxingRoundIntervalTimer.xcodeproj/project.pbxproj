@@ -11,6 +11,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		22CB14932563A54C007CF9E6 /* clacker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22CB14922563A54C007CF9E6 /* clacker.mp3 */; };
+		22D1F25425638C1F000D7422 /* round_end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 22D1F25325638C1F000D7422 /* round_end.mp3 */; };
 		26AC12D0924DDF538A02794A /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF43325E9F41DD49BA4AB3C5 /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -51,6 +53,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = boxingRoundIntervalTimer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = boxingRoundIntervalTimer/main.m; sourceTree = "<group>"; };
 		13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		22CB14922563A54C007CF9E6 /* clacker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = clacker.mp3; path = ../../../../Downloads/clacker.mp3; sourceTree = "<group>"; };
+		22D1F25325638C1F000D7422 /* round_end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = round_end.mp3; path = ../../../../Downloads/round_end.mp3; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BE9732A58F4771E4A560A7E /* Pods-boxingRoundIntervalTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,7 +165,6 @@
 				FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */,
 				13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +178,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				22CB14922563A54C007CF9E6 /* clacker.mp3 */,
+				22D1F25325638C1F000D7422 /* round_end.mp3 */,
 				13B07FAE1A68108700A75B9A /* boxingRoundIntervalTimer */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* boxingRoundIntervalTimerTests */,
@@ -340,7 +345,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D1F25425638C1F000D7422 /* round_end.mp3 in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				22CB14932563A54C007CF9E6 /* clacker.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

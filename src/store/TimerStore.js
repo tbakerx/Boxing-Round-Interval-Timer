@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import Sound from 'react-native-sound'
 
 class TimerStore {
   @observable title
@@ -10,6 +11,9 @@ class TimerStore {
   @observable isRunning
   @observable isRest
 
+  roundEndSound = null
+  clackerSound = null
+
   constructor() {
     this.title = 'Classic'
     this.numRounds = 12
@@ -19,6 +23,34 @@ class TimerStore {
     this.currTimerVal = this.roundDuration
     this.isRunning = false
     this.isRest = false
+
+    this.initializeSounds()
+  }
+
+  initializeSounds = () => {
+    Sound.setCategory('Playback')
+
+    this.roundEndSound = new Sound(
+      'round_end.mp3',
+      Sound.MAIN_BUNDLE,
+      (error) => {
+        if (error) {
+          console.log('Failed to load sound effect', error)
+          return
+        } else {
+          console.log('Round End sound loaded successfully')
+        }
+      }
+    )
+
+    this.clackerSound = new Sound('clacker.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('Failed to load sound effect', error)
+        return
+      } else {
+        console.log('Clacker sound loaded successfully')
+      }
+    })
   }
 
   @action loadProfile = (profile) => {
@@ -52,6 +84,22 @@ class TimerStore {
     this.currRound = 1
     this.isRunning = false
     this.isRest = false
+  }
+
+  @action playRoundEnd = () => {
+    if (!this.roundEndSound) {
+      console.log('Sound not loaded')
+    } else {
+      this.roundEndSound.play()
+    }
+  }
+
+  @action playClacker = () => {
+    if (!this.clackerSound) {
+      console.log('Sound not loaded')
+    } else {
+      this.clackerSound.play()
+    }
   }
 }
 
