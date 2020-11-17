@@ -2,31 +2,34 @@ import { observable, action } from 'mobx'
 
 class TimerStore {
   @observable title
-  @observable numberRounds
-  @observable duration
-  @observable rest
+  @observable numRounds
+  @observable roundDuration
+  @observable restDuration
   @observable currTimerVal
   @observable currRound
   @observable isRunning
+  @observable isRest
 
   constructor() {
     this.title = 'Classic'
-    this.numberRounds = 12
+    this.numRounds = 12
     this.currRound = 1
-    this.duration = 180
-    this.rest = 60
-    this.currTimerVal = this.duration
+    this.roundDuration = 180
+    this.restDuration = 60
+    this.currTimerVal = this.roundDuration
     this.isRunning = false
+    this.isRest = false
   }
 
   @action loadProfile = (profile) => {
     this.title = profile.title
-    this.numberRounds = profile.numberRounds
-    this.duration = profile.duration
-    this.rest = profile.rest
-    this.currTimerVal = profile.duration
+    this.numRounds = profile.numRounds
+    this.roundDuration = profile.roundDuration
+    this.restDuration = profile.restDuration
+    this.currTimerVal = profile.roundDuration
     this.currRound = 1
     this.isRunning = false
+    this.isRest = false
   }
 
   @action startTimer = () => {}
@@ -36,7 +39,19 @@ class TimerStore {
   @action resetTimer = () => {}
 
   @action incrementRound = () => {
+    this.isRest = false
     this.currRound++
+    this.roundDuration = this.roundDuration
+  }
+
+  @action setRest = () => {
+    this.isRest = true
+  }
+
+  @action resetTimerStore = () => {
+    this.currRound = 1
+    this.isRunning = false
+    this.isRest = false
   }
 }
 

@@ -1,20 +1,20 @@
 export const timerProfiles = [
   {
     title: 'Classic',
-    numberRounds: 12,
-    duration: 180,
-    rest: 60
+    numRounds: 12,
+    roundDuration: 180,
+    restDuration: 60
   },
   {
     title: 'Amateur',
-    numberRounds: 4,
-    duration: 120,
-    rest: 60
+    numRounds: 4,
+    roundDuration: 120,
+    restDuration: 60
   },
   {
     title: 'MMA',
-    numberRounds: 5,
-    duration: 300,
-    rest: 60
+    numRounds: 5,
+    roundDuration: 300,
+    restDuration: 60
   }
 ]
