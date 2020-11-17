@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import { observer } from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useStores } from '../hooks/useStores'
@@ -25,11 +25,14 @@ const TimerScreen = () => {
         checkpoints={[
           {
             time: toSeconds(10),
-            callback: () => alert('Play 10 second warning')
+            callback: () => {
+              timerStore.playClacker()
+            }
           },
           {
             time: 0,
             callback: () => {
+              timerStore.playRoundEnd()
               if (timerStore.isRest) {
                 mainTimer.current.setTime(toSeconds(timerStore.roundDuration))
                 mainTimer.current.start()
