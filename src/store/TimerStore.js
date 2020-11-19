@@ -15,7 +15,7 @@ class TimerStore {
   clackerSound = null
 
   constructor() {
-    this.title = 'Classic'
+    this.title = 'CLASSIC'
     this.numRounds = 12
     this.currRound = 1
     this.roundDuration = 180

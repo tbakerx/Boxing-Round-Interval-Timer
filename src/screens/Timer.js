@@ -14,7 +14,9 @@ const TimerScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>{timerStore.title}</Text>
-      <Text>{timerStore.currRound}</Text>
+      <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
+        {timerStore.currRound}
+      </Text>
       <Timer
         ref={mainTimer}
         initialTime={toSeconds(timerStore.roundDuration)}
@@ -51,7 +53,7 @@ const TimerScreen = () => {
           }
         ]}>
         <View>
-          <Text style={{ fontFamily: 'Helvetica Neue' }}>
+          <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
             <Text style={{ fontSize: 32 }}>
               <Timer.Minutes />
               <Text>:</Text>
@@ -89,7 +91,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'blue',
-    borderWidth: 1
+    borderWidth: 1,
+    fontFamily: 'MiedingerLightW00-Regular'
   }
 })
 
