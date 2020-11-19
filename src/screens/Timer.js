@@ -5,12 +5,12 @@ import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 
 const toSeconds = (value) => {
-  return value * 1000
-}
+  return value * 1000;
+};
 
 const TimerScreen = () => {
-  const mainTimer = useRef()
-  const { timerStore } = useStores()
+  const mainTimer = useRef();
+  const { timerStore } = useStores();
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>{timerStore.title}</Text>
@@ -34,17 +34,17 @@ const TimerScreen = () => {
             callback: () => {
               timerStore.playRoundEnd()
               if (timerStore.isRest) {
-                mainTimer.current.setTime(toSeconds(timerStore.roundDuration))
-                mainTimer.current.start()
-                timerStore.incrementRound()
+                mainTimer.current.setTime(toSeconds(timerStore.roundDuration));
+                mainTimer.current.start();
+                timerStore.incrementRound();
               } else {
                 if (timerStore.currRound == timerStore.numRounds) {
-                  timerStore.resetTimerStore()
-                  mainTimer.current.reset()
+                  timerStore.resetTimerStore();
+                  mainTimer.current.reset();
                 } else {
-                  mainTimer.current.setTime(toSeconds(timerStore.restDuration))
-                  mainTimer.current.start()
-                  timerStore.setRest()
+                  mainTimer.current.setTime(toSeconds(timerStore.restDuration));
+                  mainTimer.current.start();
+                  timerStore.setRest();
                 }
               }
             }
@@ -70,9 +70,9 @@ const TimerScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              mainTimer.current.reset()
-              mainTimer.current.pause()
-              timerStore.currRound = 1
+              mainTimer.current.reset();
+              mainTimer.current.pause();
+              timerStore.currRound = 1;
             }}>
             <View style={styles.timerButton}>
               <Text>Restart Timer</Text>
@@ -81,16 +81,16 @@ const TimerScreen = () => {
         </View>
       </Timer>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   timerButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'blue',
-    borderWidth: 1
-  }
-})
+    borderWidth: 1,
+  },
+});
 
-export default observer(TimerScreen)
+export default observer(TimerScreen);

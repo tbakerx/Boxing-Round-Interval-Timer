@@ -2,14 +2,14 @@ import { observable, action } from 'mobx'
 import Sound from 'react-native-sound'
 
 class TimerStore {
-  @observable title
-  @observable numRounds
-  @observable roundDuration
-  @observable restDuration
-  @observable currTimerVal
-  @observable currRound
-  @observable isRunning
-  @observable isRest
+  @observable title;
+  @observable numRounds;
+  @observable roundDuration;
+  @observable restDuration;
+  @observable currTimerVal;
+  @observable currRound;
+  @observable isRunning;
+  @observable isRest;
 
   roundEndSound = null
   clackerSound = null
@@ -54,31 +54,31 @@ class TimerStore {
   }
 
   @action loadProfile = (profile) => {
-    this.title = profile.title
-    this.numRounds = profile.numRounds
-    this.roundDuration = profile.roundDuration
-    this.restDuration = profile.restDuration
-    this.currTimerVal = profile.roundDuration
-    this.currRound = 1
-    this.isRunning = false
-    this.isRest = false
-  }
+    this.title = profile.title;
+    this.numRounds = profile.numRounds;
+    this.roundDuration = profile.roundDuration;
+    this.restDuration = profile.restDuration;
+    this.currTimerVal = profile.roundDuration;
+    this.currRound = 1;
+    this.isRunning = false;
+    this.isRest = false;
+  };
 
-  @action startTimer = () => {}
+  @action startTimer = () => {};
 
-  @action stopTimer = () => {}
+  @action stopTimer = () => {};
 
-  @action resetTimer = () => {}
+  @action resetTimer = () => {};
 
   @action incrementRound = () => {
-    this.isRest = false
-    this.currRound++
-    this.roundDuration = this.roundDuration
-  }
+    this.isRest = false;
+    this.currRound++;
+    this.roundDuration = this.roundDuration;
+  };
 
   @action setRest = () => {
-    this.isRest = true
-  }
+    this.isRest = true;
+  };
 
   @action resetTimerStore = () => {
     this.currRound = 1
@@ -103,4 +103,4 @@ class TimerStore {
   }
 }
 
-export default TimerStore
+export default TimerStore;
