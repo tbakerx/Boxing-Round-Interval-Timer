@@ -1,12 +1,10 @@
-import React from 'react'
-import SettingsStore from './SettingsStore'
-import TimerStore from './TimerStore'
+import React from 'react';
+import TimerStore from './TimerStore';
 
 export class RootStore {
-  settingsStore = new SettingsStore()
-  timerStore = new TimerStore()
+  timerStore = new TimerStore();
 }
 
-const initializedStores = new RootStore()
+const initializedStores = new RootStore();
 
-export const storesContext = React.createContext(initializedStores)
+export const storesContext = React.createContext(initializedStores);

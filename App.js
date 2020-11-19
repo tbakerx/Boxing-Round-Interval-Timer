@@ -1,13 +1,10 @@
-import 'react-native-gesture-handler'
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import 'react-native-gesture-handler';
+import React from 'react';
 
-import RootNavigator from './src/navigation/RootNavigator'
+import Timer from './src/screens/Timer';
 
 const App = () => {
-  return <RootNavigator />
-}
+  return <Timer />;
+};
 
-const styles = StyleSheet.create({})
-
-export default App
+export default App;
