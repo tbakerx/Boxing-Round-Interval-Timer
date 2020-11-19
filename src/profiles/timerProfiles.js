@@ -1,12 +1,12 @@
 export const timerProfiles = [
   {
-    title: 'Classic',
+    title: 'CLASSIC',
     numRounds: 12,
     roundDuration: 180,
     restDuration: 60
   },
   {
-    title: 'Amateur',
+    title: 'AMATEUR',
     numRounds: 4,
     roundDuration: 120,
     restDuration: 60
