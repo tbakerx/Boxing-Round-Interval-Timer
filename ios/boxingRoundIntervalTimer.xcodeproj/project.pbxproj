@@ -28,6 +28,7 @@
 		E60566A86525417F9233B1DE /* miedingerThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5517454A20564AB49C05694F /* miedingerThin.ttf */; };
 		B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */; };
 		122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */; };
+		193236816369461C836565BF /* Myriad Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		5517454A20564AB49C05694F /* miedingerThin.ttf */ = {isa = PBXFileReference; name = "miedingerThin.ttf"; path = "../assets/fonts/miedingerThin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerLightW00-Regular.ttf"; path = "../assets/fonts/MiedingerLightW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerThinW00-Regular.ttf"; path = "../assets/fonts/MiedingerThinW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */ = {isa = PBXFileReference; name = "Myriad Pro.ttf"; path = "../assets/fonts/Myriad Pro.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				5517454A20564AB49C05694F /* miedingerThin.ttf */,
 				50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */,
 				ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */,
+				FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				E60566A86525417F9233B1DE /* miedingerThin.ttf in Resources */,
 				B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */,
 				122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */,
+				193236816369461C836565BF /* Myriad Pro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

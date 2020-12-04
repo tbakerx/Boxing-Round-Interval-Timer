@@ -1,6 +1,14 @@
 import React, { useRef } from 'react'
 import { observer } from 'mobx-react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  ImageBackground
+} from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 
@@ -12,11 +20,12 @@ const TimerScreen = () => {
   const mainTimer = useRef()
   const { timerStore } = useStores()
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>{timerStore.title}</Text>
-      <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
-        {timerStore.currRound}
-      </Text>
+    // <Image source={require('..assets/images/bg-image.jpg')}></Image>
+    <ImageBackground
+      source={require('../../assets/images/bg-image.jpg')}
+      style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={styles.infoDisplay}>{timerStore.title}</Text>
+      <Text style={styles.timerDisplay}>RD {timerStore.currRound}</Text>
       <Timer
         ref={mainTimer}
         initialTime={toSeconds(timerStore.roundDuration)}
@@ -53,46 +62,79 @@ const TimerScreen = () => {
           }
         ]}>
         <View>
-          <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
+          <Text style={styles.timerDisplay}>
             <Text style={{ fontSize: 32 }}>
               <Timer.Minutes />
               <Text>:</Text>
               <Timer.Seconds />
             </Text>
           </Text>
-          <TouchableOpacity onPress={() => mainTimer.current.start()}>
-            <View style={styles.timerButton}>
-              <Text>Start Timer</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => mainTimer.current.pause()}>
-            <View style={styles.timerButton}>
-              <Text>Pause Timer</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              mainTimer.current.reset()
-              mainTimer.current.pause()
-              timerStore.currRound = 1
-            }}>
-            <View style={styles.timerButton}>
-              <Text>Restart Timer</Text>
-            </View>
-          </TouchableOpacity>
         </View>
       </Timer>
-    </View>
+      <Text>{'\n\n\n'}</Text>
+      <TouchableOpacity onPress={() => mainTimer.current.start()}>
+        <View style={styles.timerControls}>
+          <Text style={styles.timerControlsText}>START</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => mainTimer.current.pause()}>
+        <View style={styles.timerControls}>
+          <Text style={styles.timerControlsText}>PAUSE</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          mainTimer.current.reset()
+          mainTimer.current.pause()
+          timerStore.currRound = 1
+        }}>
+        <View style={styles.timerControls}>
+          <Text style={styles.timerControlsText}>RESET</Text>
+        </View>
+      </TouchableOpacity>
+      <Image
+        source={require('../../assets/images/bg-image.jpg')}
+        style={styles.backgroundImage}
+      />
+    </ImageBackground>
   )
 }
 
+var width = Dimensions.get('window').width
+var height = Dimensions.get('window').height
+
 const styles = StyleSheet.create({
-  timerButton: {
+  infoDisplay: {
+    fontFamily: 'Myriad Pro'
+  },
+  timerDisplay: {
+    color: 'white',
+    fontFamily: 'MiedingerLightW00-Regular',
+    textShadowColor: 'white',
+    textShadowOffset: { width: -1, height: -1 },
+    textShadowRadius: 10
+  },
+  timerControls: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'blue',
+    borderColor: 'red',
     borderWidth: 1,
-    fontFamily: 'MiedingerLightW00-Regular'
+    alignSelf: 'stretch',
+    height: height / 10,
+    width: width
+  },
+  timerControlsText: {
+    color: 'white',
+    fontFamily: 'Myriad Pro',
+    textShadowColor: 'grey',
+    textShadowOffset: { width: -1, height: -1 },
+    textShadowRadius: 10
+  },
+  backgroundImage: {
+    display: 'none',
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center'
   }
 })
 
