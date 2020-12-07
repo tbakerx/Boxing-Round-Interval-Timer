@@ -23,6 +23,7 @@ const TimerScreen = () => {
         direction="backward"
         startImmediately={false}
         timeToUpdate={10}
+        onReset={() => mainTimer.current.setTime(toSeconds(timerStore.roundDuration))}
         formatValue={(value) => `${value < 10 ? `0${value}` : value}`}
         checkpoints={[
           {
