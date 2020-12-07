@@ -22,10 +22,6 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B80CAC3D643BCBAFDC6B4C7B /* libPods-boxingRoundIntervalTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */; };
 		F1062DBDD462C26AD1EB97A9 /* libPods-boxingRoundIntervalTimer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */; };
-		9BF07DF9A2184CB699DA7CD6 /* Miedinger Light Woo Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1EACBBB779F48609F2DA0C7 /* Miedinger Light Woo Regular.ttf */; };
-		5A492C5B8ABA44A696D11213 /* Miedinger Thin W00 Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4ED279946F974FA98D3B71A7 /* Miedinger Thin W00 Regular.ttf */; };
-		171C19FA264E4796AFDCE7F3 /* miedingerLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 336BBA635C1141119D74DD99 /* miedingerLight.ttf */; };
-		E60566A86525417F9233B1DE /* miedingerThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5517454A20564AB49C05694F /* miedingerThin.ttf */; };
 		B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */; };
 		122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */; };
 		193236816369461C836565BF /* Myriad Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */; };
@@ -78,10 +74,6 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C1EACBBB779F48609F2DA0C7 /* Miedinger Light Woo Regular.ttf */ = {isa = PBXFileReference; name = "Miedinger Light Woo Regular.ttf"; path = "../assets/fonts/Miedinger Light Woo Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4ED279946F974FA98D3B71A7 /* Miedinger Thin W00 Regular.ttf */ = {isa = PBXFileReference; name = "Miedinger Thin W00 Regular.ttf"; path = "../assets/fonts/Miedinger Thin W00 Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		336BBA635C1141119D74DD99 /* miedingerLight.ttf */ = {isa = PBXFileReference; name = "miedingerLight.ttf"; path = "../assets/fonts/miedingerLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5517454A20564AB49C05694F /* miedingerThin.ttf */ = {isa = PBXFileReference; name = "miedingerThin.ttf"; path = "../assets/fonts/miedingerThin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerLightW00-Regular.ttf"; path = "../assets/fonts/MiedingerLightW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerThinW00-Regular.ttf"; path = "../assets/fonts/MiedingerThinW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */ = {isa = PBXFileReference; name = "Myriad Pro.ttf"; path = "../assets/fonts/Myriad Pro.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -221,10 +213,6 @@
 		476F8520076D49EEB2D7C6B1 /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				C1EACBBB779F48609F2DA0C7 /* Miedinger Light Woo Regular.ttf */,
-				4ED279946F974FA98D3B71A7 /* Miedinger Thin W00 Regular.ttf */,
-				336BBA635C1141119D74DD99 /* miedingerLight.ttf */,
-				5517454A20564AB49C05694F /* miedingerThin.ttf */,
 				50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */,
 				ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */,
 				FEFAB28C6DA5414EAC04371E /* Myriad Pro.ttf */,
@@ -379,10 +367,6 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				22CB14932563A54C007CF9E6 /* clacker.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				9BF07DF9A2184CB699DA7CD6 /* Miedinger Light Woo Regular.ttf in Resources */,
-				5A492C5B8ABA44A696D11213 /* Miedinger Thin W00 Regular.ttf in Resources */,
-				171C19FA264E4796AFDCE7F3 /* miedingerLight.ttf in Resources */,
-				E60566A86525417F9233B1DE /* miedingerThin.ttf in Resources */,
 				B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */,
 				122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */,
 				193236816369461C836565BF /* Myriad Pro.ttf in Resources */,
