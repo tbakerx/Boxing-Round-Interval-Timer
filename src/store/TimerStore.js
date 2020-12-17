@@ -101,6 +101,19 @@ class TimerStore {
       this.clackerSound.play()
     }
   }
+
+  _currentState = () => {
+    return {
+      title: this.title,
+      numRounds: this.numRounds,
+      roundDuration: this.roundDuration,
+      restDuration: this.restDuration,
+      currTimerVal: this.currTimerVal,
+      currRound: this.currRound,
+      isRunning: this.isRunning,
+      isRest: this.isRest,
+    }
+  }
 }
 
 export default TimerStore;
