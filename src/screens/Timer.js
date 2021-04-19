@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { observer } from 'mobx-react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
+import Video from 'react-native-video'
+import LinearGradient from 'react-native-linear-gradient'
 
 const toSeconds = (value) => {
   return value * 1000;
@@ -11,12 +13,42 @@ const toSeconds = (value) => {
 const TimerScreen = () => {
   const mainTimer = useRef();
   const { timerStore } = useStores();
+  const [action, setAction] = useState('')
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>{timerStore.title}</Text>
-      <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
-        {timerStore.currRound}
-      </Text>
+      <Video
+        source={require('../../assets/video/video.mp4')}
+        style={{height: '100%', width: '100%', zIndex: -1, position: 'absolute'}}
+        muted={true}
+        repeat={true}
+        resizeMode={'cover'}
+        rate={1.0}
+        ignoreSilentSwitch={'obey'}
+      />
+      <LinearGradient
+        colors={['rgba(0, 0, 0, 0.47)', 'rgba(0, 0, 0, 0.74)', 'rgba(0, 0, 0, 0.47)']}
+        end={{x: 1, y: 1}}
+        start={{x: 1, y: 0}}
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          position: 'absolute',
+          zIndex: 0,
+        }}
+      />
+      <TouchableOpacity style={{position: 'absolute', top: 47, right: 47, width: 33, height: 33, backgroundColor: 'rgba(255,255,255,0.13)', borderRadius: 33,}}>
+        <Text style={{color: 'white', textAlign: 'center', marginTop: 0, fontSize: 27, fontWeight: '500'}}>i</Text>
+      </TouchableOpacity>
+      <Text style={styles.timerTitle}>{timerStore.title}</Text>
+      {
+        timerStore.currRound + 1 >= timerStore.numRounds
+        ? timerStore.isRest
+          ? <Text style={styles.roundText}>Up Next: Final Rd</Text>
+          : <Text style={styles.roundText}>Rd {timerStore.currRound}</Text>
+        : timerStore.isRest
+          ? <Text style={styles.roundText}>Up Next: Rd {timerStore.currRound + 1} </Text>
+          : <Text style={styles.roundText}>Rd {timerStore.currRound}</Text>
+      }
       <Timer
         ref={mainTimer}
         initialTime={toSeconds(timerStore.roundDuration)}
@@ -54,33 +86,56 @@ const TimerScreen = () => {
           }
         ]}>
         <View>
-          <Text style={{ fontFamily: 'MiedingerLightW00-Regular' }}>
-            <Text style={{ fontSize: 32 }}>
-              <Timer.Minutes />
-              <Text>:</Text>
-              <Timer.Seconds />
+          <Text style={styles.timeText}>
+            <Text>
+              <View>
+                <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, color: timerStore.isRest ? '#0066FF' : '#FF3300', }}>
+                  <Timer.Minutes />
+                </Text>
+              </View>
+              <View>
+                <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, marginBottom: 7, color: 'white', }}>:</Text>
+              </View>
+              <View>
+                <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, color: timerStore.isRest ? '#0066FF' : '#FF3300', }}>
+                  <Timer.Seconds />
+                </Text>
+              </View>
             </Text>
           </Text>
-          <TouchableOpacity onPress={() => mainTimer.current.start()}>
-            <View style={styles.timerButton}>
-              <Text>Start Timer</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => mainTimer.current.pause()}>
-            <View style={styles.timerButton}>
-              <Text>Pause Timer</Text>
-            </View>
-          </TouchableOpacity>
+        <View>
+          {timerStore.isRunning ?
+            <TouchableOpacity
+              style={styles.timerControls}
+              onPress={() => {
+                mainTimer.current.pause()
+                timerStore.pauseTimer()
+              }}
+            >
+              <Text style={styles.controlText}>PAUSE</Text>
+            </TouchableOpacity>:
+            <TouchableOpacity
+              style={styles.timerControls}
+              onPress={() => {
+                mainTimer.current.start()
+                timerStore.startTimer()
+              }}
+            >
+              <Text style={styles.controlText}>START</Text>
+            </TouchableOpacity>
+          }
           <TouchableOpacity
+            style={styles.timerControls}
             onPress={() => {
-              mainTimer.current.reset();
-              mainTimer.current.pause();
-              timerStore.currRound = 1;
-            }}>
-            <View style={styles.timerButton}>
-              <Text>Restart Timer</Text>
-            </View>
+              mainTimer.current.reset()
+              mainTimer.current.pause()
+              timerStore.currRound = 1
+              timerStore.resetTimer()
+            }}
+          >
+            <Text style={styles.controlText}>RESET</Text>
           </TouchableOpacity>
+        </View>
         </View>
       </Timer>
     </View>
@@ -88,12 +143,37 @@ const TimerScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  timerButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'blue',
-    borderWidth: 1,
-    fontFamily: 'MiedingerLightW00-Regular'
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  timerTitle: {
+    marginBottom: 47,
+    letterSpacing: 3,
+    fontSize: 33,
+    color: 'white',
+  },
+  roundText: {
+    fontFamily: 'MiedingerLightW00-Regular',
+    marginBottom: -3,
+    letterSpacing: 3,
+    fontSize: 23,
+    color: 'white',
+  },
+  timeText: {
+    fontFamily: 'MiedingerLightW00-Regular',
+  },
+  timerControls: {
+    marginTop: 47,
+  },
+  controlText: {
+    textAlign: 'center',
+    letterSpacing: 7,
+    fontSize: 33,
+    color: 'white',
   },
 });
 

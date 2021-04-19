@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import Sound from 'react-native-sound'
+// import Sound from 'react-native-sound'
 
 class TimerStore {
   @observable title;
@@ -15,11 +15,11 @@ class TimerStore {
   clackerSound = null
 
   constructor() {
-    this.title = 'CLASSIC'
-    this.numRounds = 12
+    this.title = 'BOXING'
+    this.numRounds = 3
     this.currRound = 1
-    this.roundDuration = 180
-    this.restDuration = 60
+    this.roundDuration = 5
+    this.restDuration = 3
     this.currTimerVal = this.roundDuration
     this.isRunning = false
     this.isRest = false
@@ -28,29 +28,30 @@ class TimerStore {
   }
 
   initializeSounds = () => {
-    Sound.setCategory('Playback')
+    console.log('play sound')
+    // Sound.setCategory('Playback')
 
-    this.roundEndSound = new Sound(
-      'round_end.mp3',
-      Sound.MAIN_BUNDLE,
-      (error) => {
-        if (error) {
-          console.log('Failed to load sound effect', error)
-          return
-        } else {
-          console.log('Round End sound loaded successfully')
-        }
-      }
-    )
+    // this.roundEndSound = new Sound(
+    //   'round_end.mp3',
+    //   Sound.MAIN_BUNDLE,
+    //   (error) => {
+    //     if (error) {
+    //       console.log('Failed to load sound effect', error)
+    //       return
+    //     } else {
+    //       console.log('Round End sound loaded successfully')
+    //     }
+    //   }
+    // )
 
-    this.clackerSound = new Sound('clacker.mp3', Sound.MAIN_BUNDLE, (error) => {
-      if (error) {
-        console.log('Failed to load sound effect', error)
-        return
-      } else {
-        console.log('Clacker sound loaded successfully')
-      }
-    })
+    // this.clackerSound = new Sound('clacker.mp3', Sound.MAIN_BUNDLE, (error) => {
+    //   if (error) {
+    //     console.log('Failed to load sound effect', error)
+    //     return
+    //   } else {
+    //     console.log('Clacker sound loaded successfully')
+    //   }
+    // })
   }
 
   @action loadProfile = (profile) => {
@@ -64,11 +65,18 @@ class TimerStore {
     this.isRest = false;
   };
 
-  @action startTimer = () => {};
+  @action startTimer = () => {
+    this.isRunning = true;
+  };
 
-  @action stopTimer = () => {};
+  @action pauseTimer = () => {
+    this.isRunning = false;
+  };
 
-  @action resetTimer = () => {};
+  @action resetTimer = () => {
+    this.isRunning = false;
+    this.isRest = false;
+  };
 
   @action incrementRound = () => {
     this.isRest = false;
@@ -81,25 +89,27 @@ class TimerStore {
   };
 
   @action resetTimerStore = () => {
-    this.currRound = 1
-    this.isRunning = false
-    this.isRest = false
+    this.currRound = 1;
+    this.isRunning = false;
+    this.isRest = false;
   }
 
   @action playRoundEnd = () => {
-    if (!this.roundEndSound) {
-      console.log('Sound not loaded')
-    } else {
-      this.roundEndSound.play()
-    }
+    console.log('play sound')
+    // if (!this.roundEndSound) {
+    //   console.log('Sound not loaded')
+    // } else {
+    //   this.roundEndSound.play()
+    // }
   }
 
   @action playClacker = () => {
-    if (!this.clackerSound) {
-      console.log('Sound not loaded')
-    } else {
-      this.clackerSound.play()
-    }
+    console.log('play sound')
+    // if (!this.clackerSound) {
+    //   console.log('Sound not loaded')
+    // } else {
+    //   this.clackerSound.play()
+    // }
   }
 
   _currentState = () => {
