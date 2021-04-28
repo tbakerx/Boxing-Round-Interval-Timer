@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
 import timerProfiles from '../profiles/timerProfiles'
-// import Sound from 'react-native-sound'
+// import Sound from 'react-native-sound' // TODO move sound import to assets directory
 
 class TimerStore {
   @observable title;
@@ -29,7 +29,7 @@ class TimerStore {
   }
 
   initializeSounds = () => {
-    console.log('play sound')
+    console.log('play sound') // TODO move sound import to assets directory
     // Sound.setCategory('Playback')
 
     // this.roundEndSound = new Sound(
@@ -96,7 +96,7 @@ class TimerStore {
   }
 
   @action playRoundEnd = () => {
-    console.log('play sound')
+    console.log('play sound') // TODO move sound import to assets directory
     // if (!this.roundEndSound) {
     //   console.log('Sound not loaded')
     // } else {
@@ -105,7 +105,7 @@ class TimerStore {
   }
 
   @action playClacker = () => {
-    console.log('play sound')
+    console.log('play sound') // TODO move sound import to assets directory
     // if (!this.clackerSound) {
     //   console.log('Sound not loaded')
     // } else {

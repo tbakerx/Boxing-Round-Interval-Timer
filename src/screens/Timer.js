@@ -38,7 +38,7 @@ const TimerScreen = () => {
         }}
       />
       <View style={{position: 'absolute', top: 47, right: 66}}>
-        <Switch size={33}/>
+        <Switch size={33}/> {/* TODO fix, style sound toggle switch */}
       </View>
       <TouchableOpacity
         onPress={() => {
@@ -46,7 +46,7 @@ const TimerScreen = () => {
         }}
         style={{position: 'absolute', top: 47, right: 17, width: 33, height: 33, backgroundColor: 'rgba(255,255,255,0.13)', borderRadius: 33,}}
       >
-        <Text style={{color: 'white', textAlign: 'center', marginTop: 0, fontSize: 27, fontWeight: '500'}}>i</Text>
+        <Text style={{color: 'white', textAlign: 'center', marginTop: 0, fontSize: 27, fontWeight: '500'}}>i</Text> {/* TODO build out menu */}
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
@@ -54,7 +54,7 @@ const TimerScreen = () => {
         }}>
         <Text style={styles.timerTitle}>
           {timerStore.title}
-        </Text>
+        </Text> {/* TODO make touchable opacity, cycle through timer profiles on click */}
       </TouchableOpacity>
       {
         timerStore.currRound + 1 >= timerStore.numRounds
