@@ -5,6 +5,7 @@ import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 import Video from 'react-native-video'
 import LinearGradient from 'react-native-linear-gradient'
+import Switch from '../components/switch'
 
 const toSeconds = (value) => {
   return value * 1000;
@@ -19,7 +20,7 @@ const TimerScreen = () => {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Video
         source={require('../../assets/video/video.mp4')}
-        style={{height: '100%', width: '100%', zIndex: -1, position: 'absolute'}}
+        style={{height: '100%', width: '100%', zIndex: -1, position: 'absolute',}}
         muted={true}
         repeat={true}
         resizeMode={'cover'}
@@ -36,10 +37,25 @@ const TimerScreen = () => {
           zIndex: 0,
         }}
       />
-      <TouchableOpacity style={{position: 'absolute', top: 47, right: 47, width: 33, height: 33, backgroundColor: 'rgba(255,255,255,0.13)', borderRadius: 33,}}>
+      <View style={{position: 'absolute', top: 47, right: 66}}>
+        <Switch size={33}/>
+      </View>
+      <TouchableOpacity
+        onPress={() => {
+          console.log('open menu')
+        }}
+        style={{position: 'absolute', top: 47, right: 17, width: 33, height: 33, backgroundColor: 'rgba(255,255,255,0.13)', borderRadius: 33,}}
+      >
         <Text style={{color: 'white', textAlign: 'center', marginTop: 0, fontSize: 27, fontWeight: '500'}}>i</Text>
       </TouchableOpacity>
-      <Text style={styles.timerTitle}>{timerStore.title}</Text>
+      <TouchableOpacity
+        onPress={() => {
+          console.log('cycle timer profile')
+        }}>
+        <Text style={styles.timerTitle}>
+          {timerStore.title}
+        </Text>
+      </TouchableOpacity>
       {
         timerStore.currRound + 1 >= timerStore.numRounds
         ? timerStore.isRest
@@ -94,7 +110,7 @@ const TimerScreen = () => {
                 </Text>
               </View>
               <View>
-                <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, marginBottom: 7, color: 'white', }}>:</Text>
+                <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, marginBottom: 7, color: '#A9A9A9', paddingHorizontal: 3, }}>:</Text>
               </View>
               <View>
                 <Text style={{ fontFamily: 'MiedingerLightW00-Regular', fontSize: 74, color: timerStore.isRest ? '#0066FF' : '#FF3300', }}>
@@ -158,10 +174,10 @@ const styles = StyleSheet.create({
   },
   roundText: {
     fontFamily: 'MiedingerLightW00-Regular',
-    marginBottom: -3,
+    marginBottom: -13,
     letterSpacing: 3,
     fontSize: 23,
-    color: 'white',
+    color: '#DCDCDC',
   },
   timeText: {
     fontFamily: 'MiedingerLightW00-Regular',

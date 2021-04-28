@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import timerProfiles from '../profiles/timerProfiles'
 // import Sound from 'react-native-sound'
 
 class TimerStore {
@@ -16,10 +17,10 @@ class TimerStore {
 
   constructor() {
     this.title = 'BOXING'
-    this.numRounds = 3
+    this.numRounds = 12
     this.currRound = 1
-    this.roundDuration = 5
-    this.restDuration = 3
+    this.roundDuration = 180
+    this.restDuration = 60
     this.currTimerVal = this.roundDuration
     this.isRunning = false
     this.isRest = false
