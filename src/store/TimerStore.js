@@ -19,8 +19,8 @@ class TimerStore {
     this.title = 'BOXING'
     this.numRounds = 12
     this.currRound = 1
-    this.roundDuration = 180
-    this.restDuration = 60
+    this.roundDuration = 18
+    this.restDuration = 6
     this.currTimerVal = this.roundDuration
     this.isRunning = false
     this.isRest = false
@@ -29,7 +29,7 @@ class TimerStore {
   }
 
   initializeSounds = () => {
-    console.log('play sound') // TODO move sound import to assets directory
+    console.log('play bell') // TODO move sound import to assets directory
     // Sound.setCategory('Playback')
 
     // this.roundEndSound = new Sound(
@@ -96,7 +96,7 @@ class TimerStore {
   }
 
   @action playRoundEnd = () => {
-    console.log('play sound') // TODO move sound import to assets directory
+    console.log('play round end') // TODO move sound import to assets directory
     // if (!this.roundEndSound) {
     //   console.log('Sound not loaded')
     // } else {
@@ -105,7 +105,7 @@ class TimerStore {
   }
 
   @action playClacker = () => {
-    console.log('play sound') // TODO move sound import to assets directory
+    console.log('play clacker') // TODO move sound import to assets directory
     // if (!this.clackerSound) {
     //   console.log('Sound not loaded')
     // } else {

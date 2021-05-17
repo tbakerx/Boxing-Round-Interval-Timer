@@ -2,9 +2,9 @@ import React, {useState, useEffect, Component} from 'react'
 import {
   View,
   Animated,
-  ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from 'react-native'
 
 import LinearGradient from 'react-native-linear-gradient'
@@ -14,7 +14,7 @@ class LinerBorderComponent extends Component {
     const {start, end} = this.props
     return (
       <LinearGradient
-        colors={['red', 'red', 'red']}
+        colors={['white', 'white', 'white']}
         start={{x: 0.0, y: 0.0}}
         end={{x: 1.0, y: 1.0}}
         style={styles.linearBorder}
@@ -55,6 +55,7 @@ function Switch({
 
   useEffect(() => {
     Animated.timing(animXValue, {
+      useNativeDriver: false,
       fromValue: value ? 0 : 1,
       toValue: value ? 1 : 0,
       duration,
@@ -87,10 +88,20 @@ function Switch({
     >
       <View
         style={[
-          value ? styles.greenStyle : styles.container,
+          value ? styles.active : styles.inactive,
           getContainerStyle(size),
         ]}
       >
+        <Image
+          source={value ? require('../../assets/image/soundOn.png') : require('../../assets/image/soundOff.png')}
+          style={{
+            position: 'absolute', top: 9, bottom: 0, left: value ? 42 : 8, right: 0,
+            borderRadius: 33,
+            zIndex: 99,
+          }}
+          height={15}
+          width={15}
+        />
         <Animated.View
           style={[
             getCircleStyle(size - 2 * gap),
@@ -101,7 +112,6 @@ function Switch({
         >
           <LinerBorder start={start} end={end} />
         </Animated.View>
-        {loading && <ActivityIndicator />}
       </View>
     </TouchableOpacity>
   )
@@ -109,31 +119,23 @@ function Switch({
 
 Switch.defaultProps = {
   gap: 2,
-  size: 60,
+  size: 33,
   value: false,
-  duration: 200,
+  duration: 100,
   startColor: ['#393b42', '#585564'],
   endColor: ['#acacac', '#BEBBCD'],
 }
 
 const styles = StyleSheet.create({
-  container: {
+  inactive: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.05)', // <- SWITCH INACTIVE BACKGROUND COLOR
-    shadowColor: '#21202BFF',
-    shadowOffset: {width: 0, height: 3},
-    shadowRadius: 3,
-    shadowOpacity: 0.2,
+    backgroundColor: 'rgba(255,255,255,0.13)',
   },
-  greenStyle: {
+  active: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'red', // <- SWITCH ACTIVE BACKGROUND COLOR
-    shadowColor: '#21202BFF',
-    shadowOffset: {width: 0, height: 3},
-    shadowRadius: 3,
-    shadowOpacity: 0.3,
+    backgroundColor: 'rgba(255,255,255,0.13)',
   },
   linearBorder: {
     position: 'absolute',
