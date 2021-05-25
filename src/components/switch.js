@@ -9,7 +9,7 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient'
 
-class LinerBorderComponent extends Component {
+class LinearBorderComponent extends Component {
   render() {
     const {start, end} = this.props
     return (
@@ -23,7 +23,7 @@ class LinerBorderComponent extends Component {
   }
 }
 
-const LinerBorder = Animated.createAnimatedComponent(LinerBorderComponent)
+const LinearBorder = Animated.createAnimatedComponent(LinearBorderComponent)
 
 function getContainerStyle(size) {
   return {width: size * 2, height: size, borderRadius: size / 2}
@@ -50,6 +50,8 @@ function Switch({
   startColor,
   endColor,
   loading,
+  onImage,
+  offImage
 }) {
   const [animXValue] = useState(new Animated.Value(value ? 1 : 0))
 
@@ -92,25 +94,32 @@ function Switch({
           getContainerStyle(size),
         ]}
       >
-        <Image
-          source={value ? require('../../assets/image/soundOn.png') : require('../../assets/image/soundOff.png')}
-          style={{
-            position: 'absolute', top: 9, bottom: 0, left: value ? 42 : 8, right: 0,
-            borderRadius: 33,
-            zIndex: 99,
-          }}
-          height={15}
-          width={15}
-        />
+        <View style={{
+          position: 'absolute',
+          width: '50%',
+          alignItems: 'center',
+          left: value ? '50%' : '0%',
+        }}>
+          <Image
+            source={value ? require('../../assets/images/soundOn.png') : require('../../assets/images/soundOff.png')}
+            style={{
+              borderRadius: 33,
+              zIndex: 99,
+            }}
+            height={15}
+            width={15}
+          />
+        </View>
         <Animated.View
           style={[
             getCircleStyle(size - 2 * gap),
             {
               transform: [circleTransform],
+              zIndex: -99,
             },
           ]}
         >
-          <LinerBorder start={start} end={end} />
+          <LinearBorder start={start} end={end} />
         </Animated.View>
       </View>
     </TouchableOpacity>
@@ -130,12 +139,12 @@ const styles = StyleSheet.create({
   inactive: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.13)',
+    backgroundColor: 'rgba(255,255,255,0.07)',
   },
   active: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.13)',
+    backgroundColor: 'rgba(255,255,255,0.07)',
   },
   linearBorder: {
     position: 'absolute',
