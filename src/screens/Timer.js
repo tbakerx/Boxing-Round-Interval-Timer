@@ -9,6 +9,7 @@ import Switch from '../components/switch'
 import { Picker } from '@react-native-community/picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import DoubleTap from '../components/double-tap'
+import videoSource from '../../assets/videos/video.mp4'
 
 StatusBar.setBarStyle('light-content', true)
 
@@ -168,15 +169,15 @@ const TimerScreen = () => {
       <View style={styles.mainFacade}/>
 
       {/* BACKGROUND VIDEO */}
-      <Video
-        source={require('../../assets/videos/video.mp4')}
-        style={[styles.backgroundVideo, {display: timerStore.video ? 'flex' : 'none'}]}
+      {timerStore.video && <Video
+        source={videoSource}
+        style={styles.backgroundVideo}
         muted={true}
         repeat={true}
         resizeMode={'cover'}
         rate={1.0}
         ignoreSilentSwitch={'obey'}
-      />
+      />}
       <LinearGradient
         colors={
           modalVisible
