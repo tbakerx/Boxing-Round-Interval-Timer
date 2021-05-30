@@ -10,6 +10,8 @@ import { Picker } from '@react-native-community/picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import DoubleTap from '../components/double-tap'
 
+StatusBar.setBarStyle('light-content', true)
+
 const red = '#FF3300'
 const blue = '#306EFF'
 const offWhite = '#DCDCDC'
@@ -55,8 +57,8 @@ const TimerScreen = () => {
     } catch (e) {
       console.log(e, 'failed to load timer values')
       timerStore.setTimerStore(
-        timerStore.roundDuration,
         timerStore.numRounds,
+        timerStore.roundDuration,
         timerStore.restDuration
       )
       restoreTimer()
@@ -162,7 +164,7 @@ const TimerScreen = () => {
         : offWhite
       }]
     }>
-      <StatusBar hidden />
+      {/* <StatusBar /> */}
       <View style={styles.mainFacade}/>
 
       {/* BACKGROUND VIDEO */}
@@ -190,7 +192,7 @@ const TimerScreen = () => {
         }}
       />
 
-      {/* CONTROLS MENU BUTTON */}
+      {/* CONTROLS MENU VIEW */}
       <View style={[styles.buttonContainer, {position: 'absolute', top: 47, right: 17, }]}>
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
@@ -215,224 +217,222 @@ const TimerScreen = () => {
       </View>      
 
       {/* CONTROLS MENU */}
-      {/* <View style={[styles.menuView, {zIndex: modalVisible ? 99 : -99,}]}> */}
-        <Modal
-          animationType='slide'
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible)
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible)
+        }}
+      >
+        {/* HELP BUTTON */}
+        <View style={[styles.buttonContainer, {position: 'absolute', top: 94, right: 17, }]}>
+          <TouchableOpacity
+            onPress={
+              () => Alert.alert(
+                "CONTROLS",
+                `\nTAP the screen to start and pause
+                \nDOUBLE TAP the screen to restart
+                \nSCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
+                `,
+                [
+                  { text: "OK" }
+                ]
+              )
+            }
+            style={styles.menuButton}
+          >
+            {/* <Text style={styles.buttonText}>?</Text> */}
+            <View style={{
+        top: 5,
+        flex: 1,
+        alignItems: 'center'
+      }}>
+        <Image
+          source={require('../../assets/images/question.png')}
+          style={{
+            top: 1,
           }}
-        >
-          {/* HELP BUTTON */}
-          <View style={[styles.buttonContainer, {position: 'absolute', top: 94, right: 17, }]}>
-            <TouchableOpacity
-              onPress={
-                () => Alert.alert(
-                  "CONTROLS",
-                  `\nTAP the screen to start and pause
-                  \nDOUBLE TAP the screen to restart
-                  \nSCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
-                  `,
-                  [
-                    { text: "OK" }
-                  ]
-                )
-              }
-              style={styles.menuButton}
-            >
-              {/* <Text style={styles.buttonText}>?</Text> */}
-              <View style={{
-          top: 5,
-          flex: 1,
-          alignItems: 'center'
-        }}>
-          <Image
-            source={require('../../assets/images/question.png')}
-            style={{
-              top: 1,
+          height={20}
+          width={20}
+        />
+      </View>
+          </TouchableOpacity>
+        </View>
+
+        {/* SOUND TOGGLE */}
+        <View style={{zIndex: 999, position: 'absolute', top: 141, right: 17, }}>
+          <Switch
+            images={`sound`}
+            value={timerStore.sound}
+            onPress={() => {
+                timerStore.toggleSound()
+                saveSoundToggle(timerStore.sound)
             }}
-            height={20}
-            width={20}
           />
         </View>
+
+        {/* VIDEO TOGGLE */}
+        <View style={{zIndex: 999, position: 'absolute', top: 188, right: 17, }}>
+          <Switch
+            images={`eye`}
+            value={timerStore.video}
+            onPress={() => {
+              timerStore.toggleVideo()
+              saveVideoToggle(timerStore.video)
+            }}
+          />
+        </View>
+
+        {/* COUNTDOWN TOGGLE */}
+        <View style={{zIndex: 999, position: 'absolute', top: 235, right: 17, }}>
+          <Switch
+            images={`count`}
+            value={timerStore.countDown}
+            onPress={() => {
+              timerStore.toggleCountDown()
+              saveToggleCountDown(timerStore.countDown)
+            }}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() => setModalVisible(!modalVisible)}
+          style={[styles.menuFacade, {zIndex: modalVisible ? 98 : -98,}]}
+        />
+        <View style={styles.menuView}>
+          <View style={styles.modalView}>
+
+
+            {/* ROUND DURATION */}
+            <View style={styles.numberDialContainer}>
+            <View style={{alignItems: 'center'}}>
+              <Picker
+                style={{
+                  width: 55,
+                  right: 21,
+                  borderRadius: 7,
+                  backgroundColor: 'transparent',
+                }}
+                itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.55,}]}
+                selectedValue={minutesCounted}
+                onValueChange={(itemValue, itemIndex) =>
+                  setMinutesCounted(itemValue)
+                }>
+                {minutesCount.map(mC => (
+                  <Picker.Item label={`${mC}`} value={mC} />
+                ))}
+              </Picker>
+              <View style={{position: 'absolute', top: 85,}}>
+                <Text style={{fontSize: 33, color: offWhite}}>:</Text>
+              </View>
+              <Picker
+                style={{
+                  position: 'absolute',
+                  left: 46,
+                  width: 55,
+                  borderRadius: 7,
+                  backgroundColor: 'transparent',
+                }}
+                itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.66,}]}
+                selectedValue={secondsCounted}
+                onValueChange={(itemValue, itemIndex) => 
+                  setSecondsCounted(itemValue)
+                }>
+                {secondsCount.map(sC => (
+                  <Picker.Item label={`${sC}`} value={sC} />
+                ))}
+              </Picker>
+            </View>
+            </View>
+
+            {/* ROUNDS QUANTITY */}
+            <View style={styles.numberDialContainer}>
+              <View style={{alignItems: 'center'}}>
+                <Picker
+                  style={{
+                    position: 'absolute',
+                    width: 66,
+                    borderRadius: 7,
+                    backgroundColor: 'transparent',
+                  }}
+                  itemStyle={[styles.numberDial, { color: white, shadowColor: white, shadowOpacity: 0.77,}]}
+                  selectedValue={rounds}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setRounds(itemValue)
+                  }>
+                  {roundsCount.map(r => (
+                    <Picker.Item label={`${r}`} value={r} />
+                  ))}
+                </Picker>
+              </View>
+            </View>
+
+            {/* REST DURATION */}
+            <View style={styles.numberDialContainer}>
+            <View style={{alignItems: 'center'}}>
+              <Picker
+                style={{
+                  width: 55,
+                  right: 21,
+                  borderRadius: 7,
+                  backgroundColor: 'transparent',
+                }}
+                itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94, }]}
+                selectedValue={minutesRested}
+                onValueChange={(itemValue, itemIndex) =>
+                  setMinutesRested(itemValue)
+                }>
+                {minutesRest.map(mR => (
+                  <Picker.Item label={`${mR}`} value={mR} />
+                ))}
+              </Picker>
+              <View style={{position: 'absolute', top: 85,}}>
+                <Text style={{fontSize: 33, color: offWhite}}>:</Text>
+              </View>
+              <Picker
+                style={{
+                  position: 'absolute',
+                  left: 46,
+                  width: 55,
+                  borderRadius: 7,
+                  backgroundColor: 'transparent',
+                }}
+                itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94,}]}
+                selectedValue={secondsRested}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSecondsRested(itemValue)
+                }>
+                {secondsRest.map(sR => (
+                  <Picker.Item label={`${sR}`} value={sR} />
+                ))}
+              </Picker>
+            </View>
+            </View>
+
+            {/* SET TIMER BUTTON */}
+            <TouchableOpacity
+              style={[styles.setButton, styles.buttonClose]}
+              onPress={() => {
+                saveTimer(
+                  parseInt(rounds),
+                  (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
+                  (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
+                )
+                timerStore.setTimerStore(
+                  parseInt(rounds),
+                  (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
+                  (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
+                )
+                restoreTimer()
+                setModalVisible(!modalVisible)
+              }}
+            >
+              <Text style={styles.setButtonText}>SET</Text>
             </TouchableOpacity>
           </View>
-
-          {/* SOUND TOGGLE */}
-          <View style={{zIndex: 999, position: 'absolute', top: 141, right: 17, }}>
-            <Switch
-              images={`sound`}
-              value={timerStore.sound}
-              onPress={() => {
-                  timerStore.toggleSound()
-                  saveSoundToggle(timerStore.sound)
-              }}
-            />
-          </View>
-
-          {/* VIDEO TOGGLE */}
-          <View style={{zIndex: 999, position: 'absolute', top: 188, right: 17, }}>
-            <Switch
-              images={`eye`}
-              value={timerStore.video}
-              onPress={() => {
-                timerStore.toggleVideo()
-                saveVideoToggle(timerStore.video)
-              }}
-            />
-          </View>
-
-          {/* COUNTDOWN TOGGLE */}
-          <View style={{zIndex: 999, position: 'absolute', top: 235, right: 17, }}>
-            <Switch
-              images={`count`}
-              value={timerStore.countDown}
-              onPress={() => {
-                timerStore.toggleCountDown()
-                saveToggleCountDown(timerStore.countDown)
-              }}
-            />
-          </View>
-
-          <TouchableOpacity
-            onPress={() => setModalVisible(!modalVisible)}
-            style={[styles.menuFacade, {zIndex: modalVisible ? 98 : -98,}]}
-          />
-          <View style={styles.menuView}>
-            <View style={styles.modalView}>
-
-
-              {/* ROUND DURATION */}
-              <View style={styles.numberDialContainer}>
-              <View style={{alignItems: 'center'}}>
-                <Picker
-                  style={{
-                    width: 55,
-                    right: 21,
-                    borderRadius: 7,
-                    backgroundColor: 'transparent',
-                  }}
-                  itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.55,}]}
-                  selectedValue={minutesCounted}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setMinutesCounted(itemValue)
-                  }>
-                  {minutesCount.map(mC => (
-                    <Picker.Item label={`${mC}`} value={mC} />
-                  ))}
-                </Picker>
-                <View style={{position: 'absolute', top: 85,}}>
-                  <Text style={{fontSize: 33, color: offWhite}}>:</Text>
-                </View>
-                <Picker
-                  style={{
-                    position: 'absolute',
-                    left: 46,
-                    width: 55,
-                    borderRadius: 7,
-                    backgroundColor: 'transparent',
-                  }}
-                  itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.66,}]}
-                  selectedValue={secondsCounted}
-                  onValueChange={(itemValue, itemIndex) => 
-                    setSecondsCounted(itemValue)
-                  }>
-                  {secondsCount.map(sC => (
-                    <Picker.Item label={`${sC}`} value={sC} />
-                  ))}
-                </Picker>
-              </View>
-              </View>
-
-              {/* ROUNDS QUANTITY */}
-              <View style={styles.numberDialContainer}>
-                <View style={{alignItems: 'center'}}>
-                  <Picker
-                    style={{
-                      position: 'absolute',
-                      width: 66,
-                      borderRadius: 7,
-                      backgroundColor: 'transparent',
-                    }}
-                    itemStyle={[styles.numberDial, { color: white, shadowColor: white, shadowOpacity: 0.77,}]}
-                    selectedValue={rounds}
-                    onValueChange={(itemValue, itemIndex) =>
-                      setRounds(itemValue)
-                    }>
-                    {roundsCount.map(r => (
-                      <Picker.Item label={`${r}`} value={r} />
-                    ))}
-                  </Picker>
-                </View>
-              </View>
-
-              {/* REST DURATION */}
-              <View style={styles.numberDialContainer}>
-              <View style={{alignItems: 'center'}}>
-                <Picker
-                  style={{
-                    width: 55,
-                    right: 21,
-                    borderRadius: 7,
-                    backgroundColor: 'transparent',
-                  }}
-                  itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94, }]}
-                  selectedValue={minutesRested}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setMinutesRested(itemValue)
-                  }>
-                  {minutesRest.map(mR => (
-                    <Picker.Item label={`${mR}`} value={mR} />
-                  ))}
-                </Picker>
-                <View style={{position: 'absolute', top: 85,}}>
-                  <Text style={{fontSize: 33, color: offWhite}}>:</Text>
-                </View>
-                <Picker
-                  style={{
-                    position: 'absolute',
-                    left: 46,
-                    width: 55,
-                    borderRadius: 7,
-                    backgroundColor: 'transparent',
-                  }}
-                  itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94,}]}
-                  selectedValue={secondsRested}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setSecondsRested(itemValue)
-                  }>
-                  {secondsRest.map(sR => (
-                    <Picker.Item label={`${sR}`} value={sR} />
-                  ))}
-                </Picker>
-              </View>
-              </View>
-
-              {/* SET TIMER BUTTON */}
-              <TouchableOpacity
-                style={[styles.setButton, styles.buttonClose]}
-                onPress={() => {
-                  saveTimer(
-                    parseInt(rounds),
-                    (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
-                    (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
-                  )
-                  timerStore.setTimerStore(
-                    parseInt(rounds),
-                    (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
-                    (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
-                  )
-                  restoreTimer()
-                  setModalVisible(!modalVisible)
-                }}
-              >
-                <Text style={styles.setButtonText}>SET</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      {/* </View> */}
+        </View>
+      </Modal>
 
       {/* TIMER VIEW */}
       <DoubleTap
