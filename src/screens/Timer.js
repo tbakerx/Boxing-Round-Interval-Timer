@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert, Image, StatusBar } from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 import Video from 'react-native-video'
@@ -29,41 +29,91 @@ const toDoubleDigit = (val) => {
 }
 
 const TimerScreen = () => {
-  const saveTimer = async (rounds, Count, Rest) => {
+  const { timerStore } = useStores()
+
+  const saveTimer = async (rounds, count, rest) => {
     try {
-      await AsyncStorage.setItem('@rounds', rounds.toString())
-      await AsyncStorage.setItem('@Count', Count.toString())
-      await AsyncStorage.setItem('@Rest', Rest.toString())
+      await AsyncStorage.setItem('@Rounds', rounds.toString())
+      await AsyncStorage.setItem('@Count', count.toString())
+      await AsyncStorage.setItem('@Rest', rest.toString())
     } catch (e) {
-      console.log('failed to save timer values')
+      console.log(e, 'failed to save timer values')
     }
   }
-  
   const loadTimer = async () => {
     try {
-      const rounds = await AsyncStorage.getItem('@rounds')
-      const Count = await AsyncStorage.getItem('@Count')
-      const Rest = await AsyncStorage.getItem('@Rest')
+      const rounds = parseInt(await AsyncStorage.getItem('@Rounds'))
+      const count = parseInt(await AsyncStorage.getItem('@Count'))
+      const rest = parseInt(await AsyncStorage.getItem('@Rest'))
       timerStore.setTimerStore(
-        parseInt(rounds),
-        parseInt(Count),
-        parseInt(Rest)
+        rounds ? rounds : timerStore.roundDuration,
+        count ? count : timerStore.numRounds,
+        rest ? rest : timerStore.restDuration
       )
       restoreTimer()
       timerStore.resetTimer()
-    } catch(e) {
-      console.log('failed to load timer values')
+    } catch (e) {
+      console.log(e, 'failed to load timer values')
+      timerStore.setTimerStore(
+        timerStore.roundDuration,
+        timerStore.numRounds,
+        timerStore.restDuration
+      )
+      restoreTimer()
+      timerStore.resetTimer()
     }
   }
-  useEffect(() => {
-    loadTimer()
-  }, [])
+  const saveSoundToggle = async val => {
+    try {
+      await AsyncStorage.setItem('@SoundToggle', val ? '1' : '0')
+    } catch (e) {
+      console.log(e, 'failed to save sound toggle')
+    }
+  }
+  const loadSoundToggle = async () => {
+    try {
+      const sound = parseInt(await AsyncStorage.getItem('@SoundToggle'))
+      timerStore.setSound(sound ? true : false)
+    } catch (e) {
+      console.log(e, 'failed to load sound toggle')
+      timerStore.setSound(true)
+    }
+  }
+  const saveVideoToggle = async val => {
+    try {
+      await AsyncStorage.setItem('@VideoToggle', val ? '1' : '0')
+    } catch (e) {
+      console.log(e, 'failed to save video toggle')
+    }
+  }
+  const loadVideoToggle = async () => {
+    try {
+      const video = parseInt(await AsyncStorage.getItem('@VideoToggle'))
+      timerStore.setVideo(video ? true : false)
+    } catch (e) {
+      console.log(e, 'failed to load video toggle')
+      timerStore.setVideo(true)
+    }
+  }
+  const saveToggleCountDown = async val => {
+    try {
+      await AsyncStorage.setItem('@CountDownToggle', val ? '1' : '0')
+    } catch (e) {
+      console.log(e, 'failed to save countdown toggle')
+    }
+  }
+  const loadCountDownToggle = async () => {
+    try {
+      const countDown = parseInt(await AsyncStorage.getItem('@CountDownToggle'))
+      timerStore.setCountDown(countDown ? true : false)
+    } catch (e) {
+      console.log(e, 'failed to load countdown toggle')
+      timerStore.setCountDown(false)
+    }
+  }
 
   const mainTimer = useRef()
-  const { timerStore } = useStores()
   const [finished, setFinished] = useState(false)
-  const [sound, toggleSound] = useState(true)
-  const [countdown, toggleCountdown] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
 
   const restoreTimer = () => {
@@ -72,11 +122,11 @@ const TimerScreen = () => {
     setFinished(false)
   }
 
-  const [minutesCounted, setMinutesCounted] = useState(toDoubleDigit(Math.floor(timerStore.roundDuration / 60)))
-  const [secondsCounted, setSecondsCounted] = useState(toDoubleDigit(timerStore.roundDuration % 60))
-  const [rounds, setRounds] = useState(timerStore.numRounds)
-  const [minutesRested, setMinutesRested] = useState(toDoubleDigit(Math.floor(timerStore.restDuration / 60)))
-  const [secondsRested, setSecondsRested] = useState(toDoubleDigit(timerStore.restDuration % 60))
+  const [minutesCounted, setMinutesCounted] = useState(toDoubleDigit(0))
+  const [secondsCounted, setSecondsCounted] = useState(toDoubleDigit(0))
+  const [rounds, setRounds] = useState(1)
+  const [minutesRested, setMinutesRested] = useState(toDoubleDigit(0))
+  const [secondsRested, setSecondsRested] = useState(toDoubleDigit(0))
 
   let minutesCount = [], secondsCount = [], roundsCount = [], minutesRest = [], secondsRest = []
   for (mC = 0 ; mC < 60 ; mC++) { minutesCount.push(toDoubleDigit(mC)) }
@@ -85,14 +135,40 @@ const TimerScreen = () => {
   for (mR = 0 ; mR < 60 ; mR++) { minutesRest.push(toDoubleDigit(mR)) }
   for (sR = 0 ; sR < 60 ; sR++) { secondsRest.push(toDoubleDigit(sR)) }
 
+  useEffect(() => {
+    loadTimer()
+    loadSoundToggle()
+    loadVideoToggle()
+    loadCountDownToggle()
+    const loadSetTimers = async () => {
+      const rounds = parseInt(await AsyncStorage.getItem('@Rounds'))
+      const count = parseInt(await AsyncStorage.getItem('@Count'))
+      const rest = parseInt(await AsyncStorage.getItem('@Rest'))
+      setMinutesCounted(toDoubleDigit(Math.floor(count / 60)))
+      setSecondsCounted(toDoubleDigit(count % 60))
+      setRounds(rounds)
+      setMinutesRested(toDoubleDigit(Math.floor(rest / 60)))
+      setSecondsRested(toDoubleDigit(rest % 60))
+    }
+    loadSetTimers()
+  }, [])
+
   return (
-    <View style={styles.mainView}>
+    <View style={[styles.mainView,
+      {backgroundColor: timerStore.isRunning
+        ? timerStore.isRest
+          ? blue
+          : red
+        : offWhite
+      }]
+    }>
+      <StatusBar hidden />
       <View style={styles.mainFacade}/>
 
       {/* BACKGROUND VIDEO */}
       <Video
         source={require('../../assets/videos/video.mp4')}
-        style={styles.backgroundVideo}
+        style={[styles.backgroundVideo, {display: timerStore.video ? 'flex' : 'none'}]}
         muted={true}
         repeat={true}
         resizeMode={'cover'}
@@ -100,7 +176,11 @@ const TimerScreen = () => {
         ignoreSilentSwitch={'obey'}
       />
       <LinearGradient
-        colors={['rgba(0, 0, 0, 0.47)', 'rgba(0, 0, 0, 0.74)', 'rgba(0, 0, 0, 0.47)']}
+        colors={
+          modalVisible
+            ? ['rgba(0, 0, 0, 0.47)', 'rgba(0, 0, 0, 0.94)', 'rgba(0, 0, 0, 1)']
+            : ['rgba(0, 0, 0, 0.47)', 'rgba(0, 0, 0, 0.74)', 'rgba(0, 0, 0, 0.47)']
+        }
         end={{x: 1, y: 1}}
         start={{x: 1, y: 0}}
         style={{
@@ -110,44 +190,27 @@ const TimerScreen = () => {
         }}
       />
 
-      {/* HELP BUTTON */}
-      <View style={[styles.buttonContainer, {position: 'absolute', top: 47, left: 17, }]}>
-        <TouchableOpacity
-          onPress={
-            () => Alert.alert(
-              "CONTROLS",
-              `\nTAP the timer to start and pause
-              \nDOUBLE TAP the timer to restart
-              \nIn the timer controls (C) menu, SCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
-              `,
-              [
-                { text: "OK" }
-              ]
-            )
-          }
-          style={styles.menuButton}
-        >
-          <Text style={styles.buttonText}>?</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* SOUND TOGGLE */}
-      <View style={{position: 'absolute', top: 47, right: 77, }}>
-        <Switch
-          onImage={`${'../../assets/images/soundOn.png'}`}
-          offImage={`${'../../assets/images/soundOff.png'}`}
-          value={sound}
-          onPress={() => toggleSound(!sound)}
-        />
-      </View>
-
       {/* CONTROLS MENU BUTTON */}
       <View style={[styles.buttonContainer, {position: 'absolute', top: 47, right: 17, }]}>
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
           style={styles.menuButton}
         >
-          <Text style={styles.buttonText}>C</Text>
+          {/* <Text style={styles.buttonText}>{'\u2699'}</Text> */}
+        <View style={{
+          top: 5,
+          flex: 1,
+          alignItems: 'center'
+        }}>
+          <Image
+            source={require('../../assets/images/settings.png')}
+            style={{
+              top: 1,
+            }}
+            height={20}
+            width={20}
+          />
+        </View>
         </TouchableOpacity>
       </View>      
 
@@ -161,6 +224,77 @@ const TimerScreen = () => {
             setModalVisible(!modalVisible)
           }}
         >
+          {/* HELP BUTTON */}
+          <View style={[styles.buttonContainer, {position: 'absolute', top: 94, right: 17, }]}>
+            <TouchableOpacity
+              onPress={
+                () => Alert.alert(
+                  "CONTROLS",
+                  `\nTAP the screen to start and pause
+                  \nDOUBLE TAP the screen to restart
+                  \nSCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
+                  `,
+                  [
+                    { text: "OK" }
+                  ]
+                )
+              }
+              style={styles.menuButton}
+            >
+              {/* <Text style={styles.buttonText}>?</Text> */}
+              <View style={{
+          top: 5,
+          flex: 1,
+          alignItems: 'center'
+        }}>
+          <Image
+            source={require('../../assets/images/question.png')}
+            style={{
+              top: 1,
+            }}
+            height={20}
+            width={20}
+          />
+        </View>
+            </TouchableOpacity>
+          </View>
+
+          {/* SOUND TOGGLE */}
+          <View style={{zIndex: 999, position: 'absolute', top: 141, right: 17, }}>
+            <Switch
+              images={`sound`}
+              value={timerStore.sound}
+              onPress={() => {
+                  timerStore.toggleSound()
+                  saveSoundToggle(timerStore.sound)
+              }}
+            />
+          </View>
+
+          {/* VIDEO TOGGLE */}
+          <View style={{zIndex: 999, position: 'absolute', top: 188, right: 17, }}>
+            <Switch
+              images={`eye`}
+              value={timerStore.video}
+              onPress={() => {
+                timerStore.toggleVideo()
+                saveVideoToggle(timerStore.video)
+              }}
+            />
+          </View>
+
+          {/* COUNTDOWN TOGGLE */}
+          <View style={{zIndex: 999, position: 'absolute', top: 235, right: 17, }}>
+            <Switch
+              images={`count`}
+              value={timerStore.countDown}
+              onPress={() => {
+                timerStore.toggleCountDown()
+                saveToggleCountDown(timerStore.countDown)
+              }}
+            />
+          </View>
+
           <TouchableOpacity
             onPress={() => setModalVisible(!modalVisible)}
             style={[styles.menuFacade, {zIndex: modalVisible ? 98 : -98,}]}
@@ -168,15 +302,6 @@ const TimerScreen = () => {
           <View style={styles.menuView}>
             <View style={styles.modalView}>
 
-              {/* COUNTDOWN TOGGLE */}
-              {/* <View style={{position: 'absolute', top: 17, right: 17, }}>
-                <Switch
-                  onImage={`${'../../assets/images/countdownOn.png'}`}
-                  offImage={`${'../../assets/images/countdownOff.png'}`}
-                  value={countdown}
-                  onPress={() => toggleCountdown(!countdown)}
-                />
-              </View> */}
 
               {/* ROUND DURATION */}
               <View style={styles.numberDialContainer}>
@@ -309,16 +434,6 @@ const TimerScreen = () => {
         </Modal>
       {/* </View> */}
 
-      {/* TIMER PROFILE */}
-      {/* <TouchableOpacity
-        onPress={() => {
-          console.log('cycle timer profile')
-        }}>
-        <Text style={styles.timerTitle}>
-          {timerStore.title}
-        </Text>
-      </TouchableOpacity> */}
-
       {/* TIMER VIEW */}
       <DoubleTap
         singleTap={() => {
@@ -341,9 +456,12 @@ const TimerScreen = () => {
         }}
       >
         <View style={{
+          zIndex: 0,
           justifyContent: 'center',
           alignItems: 'center',
           padding: 47,
+          height: '100%',
+          width: '100%',
         }}>
 
           {/* ROUND STATUS */}
@@ -370,19 +488,13 @@ const TimerScreen = () => {
               {
                 time: toSeconds(10),
                 callback: () => {
-                  if (sound) {
-                    console.log(sound)
-                    timerStore.playClacker()
-                  }
+                  timerStore.playClacker()
                 }
               },
               {
                 time: 0,
                 callback: () => {
-                  if (sound) {
-                    // console.log(sound)
-                    timerStore.playRoundEnd()
-                  }
+                  timerStore.playRoundEnd()
                   if (timerStore.isRest) {
                     mainTimer.current.setTime(toSeconds(timerStore.roundDuration))
                     mainTimer.current.start()
@@ -513,6 +625,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonContainer: {
+    zIndex: 999,
     width: 33,
     height: 33,
     backgroundColor: 'rgba(255, 255, 255, 0.07)',
@@ -524,12 +637,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     fontSize: 27,
     fontWeight: '600',
-  },
-  timerTitle: {
-    marginBottom: 47,
-    letterSpacing: 3,
-    fontSize: 33,
-    color: offWhite,
   },
   roundText: {
     fontFamily: 'MiedingerLightW00-Regular',

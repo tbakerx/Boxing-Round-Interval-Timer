@@ -11,6 +11,9 @@ class TimerStore {
   @observable currRound
   @observable isRunning
   @observable isRest
+  @observable sound
+  @observable video
+  @observable countDown
 
   roundEndSound = null
   clackerSound = null
@@ -24,6 +27,9 @@ class TimerStore {
     this.currTimerVal = this.roundDuration
     this.isRunning = false
     this.isRest = false
+    this.sound = true
+    this.video = true
+    this.countDown = false
 
     this.initializeSounds()
   }
@@ -116,31 +122,61 @@ class TimerStore {
     this.resetTimer()
   }
 
+  @action setSound = val => {
+    this.sound = val
+  }
+
+  @action setVideo = val => {
+    this.video = val
+  }
+
+  @action setCountDown = val => {
+    this.countDown = val
+  }
+
+  @action toggleSound = () => {
+    this.sound = !this.sound
+  }
+
+  @action toggleVideo = () => {
+    this.video = !this.video
+  }
+
+  @action toggleCountDown = () => {
+    this.countDown = !this.countDown
+  }
+
   @action playRoundStart = () => {
-    console.log('play round start') // TODO move sound import to assets directory
-    // if (!this.roundStartSound) {
-    //   console.log('Sound not loaded')
-    // } else {
-    //   this.roundStartSound.play()
-    // }
+    if (this.sound) {
+      console.log('play round start') // TODO move sound import to assets directory
+      // if (!this.roundStartSound) {
+      //   console.log('Sound not loaded')
+      // } else {
+      //   this.roundStartSound.play()
+      // }
+    }
   }
 
   @action playRoundEnd = () => {
-    console.log('play round end') // TODO move sound import to assets directory
-    // if (!this.roundEndSound) {
-    //   console.log('Sound not loaded')
-    // } else {
-    //   this.roundEndSound.play()
-    // }
+    if (this.sound) {      
+      console.log('play round end') // TODO move sound import to assets directory
+      // if (!this.roundEndSound) {
+      //   console.log('Sound not loaded')
+      // } else {
+      //   this.roundEndSound.play()
+      // }
+    }
   }
 
   @action playClacker = () => {
-    console.log('play clacker') // TODO move sound import to assets directory
-    // if (!this.clackerSound) {
-    //   console.log('Sound not loaded')
-    // } else {
-    //   this.clackerSound.play()
-    // }
+    if (this.sound) {      
+      console.log('play clacker') // TODO move sound import to assets directory
+      // if (!this.clackerSound) {
+      //   console.log('Sound not loaded')
+      // } else {
+      //   this.clackerSound.play()
+      // }
+    }
   }
 
   _currentState = () => {

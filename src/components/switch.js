@@ -50,9 +50,23 @@ function Switch({
   startColor,
   endColor,
   loading,
-  onImage,
-  offImage
+  images,
 }) {
+  let onImage
+  let offImage
+  if (images === 'sound') {
+    onImage = require('../../assets/images/soundOn.png')
+    offImage = require('../../assets/images/soundOff.png')
+  }
+  if (images === 'eye') {
+    onImage = require('../../assets/images/eyeOn.png')
+    offImage = require('../../assets/images/eyeOff.png')
+  }
+  if (images === 'count') {
+    onImage = require('../../assets/images/countOn.png')
+    offImage = require('../../assets/images/countOff.png')
+  }
+
   const [animXValue] = useState(new Animated.Value(value ? 1 : 0))
 
   useEffect(() => {
@@ -101,7 +115,7 @@ function Switch({
           left: value ? '50%' : '0%',
         }}>
           <Image
-            source={value ? require('../../assets/images/soundOn.png') : require('../../assets/images/soundOff.png')}
+            source={value ? onImage : offImage}
             style={{
               borderRadius: 33,
               zIndex: 99,
