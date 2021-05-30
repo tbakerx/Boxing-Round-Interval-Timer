@@ -10,6 +10,10 @@ target 'boxingRoundIntervalTimer' do
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
+
   target 'boxingRoundIntervalTimerTests' do
     inherit! :complete
     # Pods for testing
