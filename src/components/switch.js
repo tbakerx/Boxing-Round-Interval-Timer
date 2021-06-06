@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import {
   View,
   Animated,
@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native'
-
 import LinearGradient from 'react-native-linear-gradient'
 
 class LinearBorderComponent extends Component {
@@ -42,7 +41,6 @@ function getCircleStyle(size) {
 function Switch({
   size,
   containerStyle,
-  style,
   value,
   onPress,
   duration,
@@ -119,6 +117,8 @@ function Switch({
             style={{
               borderRadius: 33,
               zIndex: 99,
+              height: 15,
+              width: 15,
             }}
             height={15}
             width={15}

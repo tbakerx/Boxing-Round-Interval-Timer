@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* boxingRoundIntervalTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* boxingRoundIntervalTimerTests.m */; };
+		122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -18,10 +19,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* boxingRoundIntervalTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* boxingRoundIntervalTimerTests.m */; };
 		660EF5388680116743493B66 /* libPods-boxingRoundIntervalTimer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */; };
 		B80CAC3D643BCBAFDC6B4C7B /* libPods-boxingRoundIntervalTimer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */; };
 		F1062DBDD462C26AD1EB97A9 /* libPods-boxingRoundIntervalTimer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */; };
-		B1D4713415C449279B2955ED /* MiedingerLightW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */; };
-		122A07A0A9E9443185D18E0E /* MiedingerThinW00-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,24 +43,26 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* boxingRoundIntervalTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = boxingRoundIntervalTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* BRITTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BRITTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* boxingRoundIntervalTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = boxingRoundIntervalTimerTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* boxingRoundIntervalTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boxingRoundIntervalTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* BRIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BRIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = boxingRoundIntervalTimer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = boxingRoundIntervalTimer/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = boxingRoundIntervalTimer/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = boxingRoundIntervalTimer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = boxingRoundIntervalTimer/main.m; sourceTree = "<group>"; };
 		13D3FD39D07180F75357D184 /* Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "boxingRoundIntervalTimer-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* BRIT-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BRIT-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* BRIT-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BRIT-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "MiedingerLightW00-Regular.ttf"; path = "../assets/fonts/MiedingerLightW00-Regular.ttf"; sourceTree = "<group>"; };
 		5BE9732A58F4771E4A560A7E /* Pods-boxingRoundIntervalTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer/Pods-boxingRoundIntervalTimer.release.xcconfig"; sourceTree = "<group>"; };
 		5DA72EFF7336CFE5B45F1127 /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6FE3DEA589118E135F61C2AE /* Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests/Pods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E0350951D2F69B9C99AB115 /* Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOS/Pods-boxingRoundIntervalTimer-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boxingRoundIntervalTimer/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8412A4B6E6BA512104B01B93 /* Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOS/Pods-boxingRoundIntervalTimer-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "MiedingerThinW00-Regular.ttf"; path = "../assets/fonts/MiedingerThinW00-Regular.ttf"; sourceTree = "<group>"; };
 		AF43325E9F41DD49BA4AB3C5 /* libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-boxingRoundIntervalTimerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA9E26E840C613DE46CE625D /* libPods-boxingRoundIntervalTimer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE40673F0497E8B64F482CF1 /* libPods-boxingRoundIntervalTimer-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,8 +71,6 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F440AEE3E69E199578B128DC /* libPods-boxingRoundIntervalTimer-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boxingRoundIntervalTimer-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA534720DC950EFB280642E /* Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-boxingRoundIntervalTimer-tvOSTests/Pods-boxingRoundIntervalTimer-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerLightW00-Regular.ttf"; path = "../assets/fonts/MiedingerLightW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */ = {isa = PBXFileReference; name = "MiedingerThinW00-Regular.ttf"; path = "../assets/fonts/MiedingerThinW00-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +153,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		476F8520076D49EEB2D7C6B1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */,
+				ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		6595A3D14EA5D7C3A1604FA2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,30 +203,20 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* boxingRoundIntervalTimer.app */,
-				00E356EE1AD99517003FC87E /* boxingRoundIntervalTimerTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* BRIT.app */,
+				00E356EE1AD99517003FC87E /* BRITTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* BRIT-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* BRIT-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		476F8520076D49EEB2D7C6B1 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				50731E6A0DF24D70882F9571 /* MiedingerLightW00-Regular.ttf */,
-				ADA2F233E5014D66B561C6D0 /* MiedingerThinW00-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* boxingRoundIntervalTimerTests */ = {
+		00E356ED1AD99517003FC87E /* BRITTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimerTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BRITTests" */;
 			buildPhases = (
 				7219AB94E7C7F38ADB16B4DC /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -230,14 +229,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = boxingRoundIntervalTimerTests;
+			name = BRITTests;
 			productName = boxingRoundIntervalTimerTests;
-			productReference = 00E356EE1AD99517003FC87E /* boxingRoundIntervalTimerTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* BRITTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* boxingRoundIntervalTimer */ = {
+		13B07F861A680F5B00A75B9A /* BRIT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BRIT" */;
 			buildPhases = (
 				4ADF99A941654A7EE96CB6E5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -251,14 +250,14 @@
 			);
 			dependencies = (
 			);
-			name = boxingRoundIntervalTimer;
+			name = BRIT;
 			productName = boxingRoundIntervalTimer;
-			productReference = 13B07F961A680F5B00A75B9A /* boxingRoundIntervalTimer.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* BRIT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* BRIT-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BRIT-tvOS" */;
 			buildPhases = (
 				DA04CEED255C3ADA4DD52F8E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -271,14 +270,14 @@
 			);
 			dependencies = (
 			);
-			name = "boxingRoundIntervalTimer-tvOS";
+			name = "BRIT-tvOS";
 			productName = "boxingRoundIntervalTimer-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS.app */;
+			productReference = 2D02E47B1E0B4A5D006451C7 /* BRIT-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* BRIT-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BRIT-tvOSTests" */;
 			buildPhases = (
 				6F97359AF18DB74C040D90CA /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -290,9 +289,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "boxingRoundIntervalTimer-tvOSTests";
+			name = "BRIT-tvOSTests";
 			productName = "boxingRoundIntervalTimer-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests.xctest */;
+			productReference = 2D02E4901E0B4A5D006451C7 /* BRIT-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -308,6 +307,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = VC9N84N34T;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -321,7 +321,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "boxingRoundIntervalTimer" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BRIT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -334,10 +334,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* boxingRoundIntervalTimer */,
-				00E356ED1AD99517003FC87E /* boxingRoundIntervalTimerTests */,
-				2D02E47A1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* BRIT */,
+				00E356ED1AD99517003FC87E /* BRITTests */,
+				2D02E47A1E0B4A5D006451C7 /* BRIT-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* BRIT-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -611,12 +611,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* boxingRoundIntervalTimer */;
+			target = 13B07F861A680F5B00A75B9A /* BRIT */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* boxingRoundIntervalTimer-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* BRIT-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -641,7 +641,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/boxingRoundIntervalTimer.app/boxingRoundIntervalTimer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRIT.app/BRIT";
 			};
 			name = Debug;
 		};
@@ -661,7 +661,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/boxingRoundIntervalTimer.app/boxingRoundIntervalTimer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRIT.app/BRIT";
 			};
 			name = Release;
 		};
@@ -672,6 +672,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VC9N84N34T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = boxingRoundIntervalTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -681,7 +682,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = boxingRoundIntervalTimer;
+				PRODUCT_NAME = BRIT;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -695,6 +696,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VC9N84N34T;
 				INFOPLIST_FILE = boxingRoundIntervalTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -703,7 +705,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = boxingRoundIntervalTimer;
+				PRODUCT_NAME = BRIT;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -787,7 +789,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.boxingRoundIntervalTimer-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/boxingRoundIntervalTimer-tvOS.app/boxingRoundIntervalTimer-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRIT-tvOS.app/BRIT-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -814,7 +816,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.boxingRoundIntervalTimer-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/boxingRoundIntervalTimer-tvOS.app/boxingRoundIntervalTimer-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BRIT-tvOS.app/BRIT-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -935,7 +937,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimerTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BRITTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -944,7 +946,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BRIT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -953,7 +955,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BRIT-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -962,7 +964,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "boxingRoundIntervalTimer-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BRIT-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -971,7 +973,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "boxingRoundIntervalTimer" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "BRIT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

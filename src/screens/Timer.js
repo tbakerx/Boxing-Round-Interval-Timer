@@ -1,20 +1,28 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
-import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert, Image, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Alert, Image, StatusBar, Dimensions, Platform, } from 'react-native'
 import { useStores } from '../hooks/useStores'
 import Timer from 'react-compound-timer'
 import Video from 'react-native-video'
 import LinearGradient from 'react-native-linear-gradient'
 import Switch from '../components/switch'
+import Slider from '../components/slider'
 import { Picker } from '@react-native-community/picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import DoubleTap from '../components/double-tap'
+// import { BlurView } from '@react-native-community/blur'
 import videoSource from '../../assets/videos/video.mp4'
+
+const CountDown = Timer
 
 StatusBar.setBarStyle('light-content', true)
 
+const windowWidth = Dimensions.get('window').width
+// const windowHeight = Dimensions.get('window').height
+
 const red = '#FF3300'
 const blue = '#306EFF'
+// const yellow = '#F7FF00'
 const offWhite = '#DCDCDC'
 const white = '#FFFFFF'
 
@@ -48,16 +56,16 @@ const TimerScreen = () => {
       const rounds = parseInt(await AsyncStorage.getItem('@Rounds'))
       const count = parseInt(await AsyncStorage.getItem('@Count'))
       const rest = parseInt(await AsyncStorage.getItem('@Rest'))
-      timerStore.setTimerStore(
-        rounds ? rounds : timerStore.roundDuration,
-        count ? count : timerStore.numRounds,
+      timerStore.setTimer(
+        rounds ? rounds : timerStore.numRounds,
+        count ? count : timerStore.roundDuration,
         rest ? rest : timerStore.restDuration
       )
       restoreTimer()
       timerStore.resetTimer()
     } catch (e) {
       console.log(e, 'failed to load timer values')
-      timerStore.setTimerStore(
+      timerStore.setTimer(
         timerStore.numRounds,
         timerStore.roundDuration,
         timerStore.restDuration
@@ -116,12 +124,13 @@ const TimerScreen = () => {
   }
 
   const mainTimer = useRef()
+  const countDownTimer = useRef()
   const [finished, setFinished] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
 
   const restoreTimer = () => {
-    mainTimer.current.reset()
     mainTimer.current.pause()
+    mainTimer.current.reset()
     setFinished(false)
   }
 
@@ -165,7 +174,10 @@ const TimerScreen = () => {
         : offWhite
       }]
     }>
-      {/* <StatusBar /> */}
+
+      <StatusBar hidden />
+
+      {/* BACKGROUND FACADE*/}
       <View style={styles.mainFacade}/>
 
       {/* BACKGROUND VIDEO */}
@@ -194,12 +206,10 @@ const TimerScreen = () => {
       />
 
       {/* CONTROLS MENU VIEW */}
-      <View style={[styles.buttonContainer, {position: 'absolute', top: 47, right: 17, }]}>
-        <TouchableOpacity
-          onPress={() => setModalVisible(true)}
-          style={styles.menuButton}
-        >
-          {/* <Text style={styles.buttonText}>{'\u2699'}</Text> */}
+      <TouchableOpacity
+        style={[styles.buttonContainer, {position: 'absolute', top: 47, right: 17,}]}
+        onPress={() => setModalVisible(true)}
+      >
         <View style={{
           top: 5,
           flex: 1,
@@ -209,13 +219,14 @@ const TimerScreen = () => {
             source={require('../../assets/images/settings.png')}
             style={{
               top: 1,
+              height: 20,
+              width: 20,
             }}
             height={20}
             width={20}
           />
         </View>
-        </TouchableOpacity>
-      </View>      
+      </TouchableOpacity>
 
       {/* CONTROLS MENU */}
       <Modal
@@ -227,42 +238,54 @@ const TimerScreen = () => {
         }}
       >
         {/* HELP BUTTON */}
-        <View style={[styles.buttonContainer, {position: 'absolute', top: 94, right: 17, }]}>
-          <TouchableOpacity
-            onPress={
-              () => Alert.alert(
-                "CONTROLS",
-                `\nTAP the screen to start and pause
-                \nDOUBLE TAP the screen to restart
-                \nSCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
-                `,
-                [
-                  { text: "OK" }
-                ]
-              )
-            }
-            style={styles.menuButton}
-          >
-            {/* <Text style={styles.buttonText}>?</Text> */}
-            <View style={{
-        top: 5,
-        flex: 1,
-        alignItems: 'center'
-      }}>
-        <Image
-          source={require('../../assets/images/question.png')}
-          style={{
-            top: 1,
-          }}
-          height={20}
-          width={20}
-        />
-      </View>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.buttonContainer, {position: 'absolute', top: 94, right: 17,}]}
+          onPress={
+            () => Alert.alert(
+              "CONTROLS",
+              `\nTAP the timer to start and pause
+              \nDOUBLE TAP the timer to restart
+              \nTOGGLE timer countdown, sound, and background video
+              \nSCROLL the time wheels to SET the round duration [red], round quantity [white], and rest duration [blue]
+              `,
+              [
+                { text: "OK" }
+              ]
+            )
+          }
+        >
+          <View style={{
+            top: 5,
+            flex: 1,
+            alignItems: 'center'
+          }}>
+            <Image
+              source={require('../../assets/images/question.png')}
+              style={{
+                top: 1,
+                height: 20,
+                width: 20,
+              }}
+              height={20}
+              width={20}
+            />
+          </View>
+        </TouchableOpacity>
+
+        {/* COUNTDOWN TOGGLE */}
+        <View style={{zIndex: 999, position: 'absolute', top: 141, right: 17,}}>
+          <Switch
+            images={`count`}
+            value={timerStore.countDown}
+            onPress={() => {
+              timerStore.toggleCountDown()
+              saveToggleCountDown(timerStore.countDown)
+            }}
+          />
         </View>
 
         {/* SOUND TOGGLE */}
-        <View style={{zIndex: 999, position: 'absolute', top: 141, right: 17, }}>
+        <View style={{zIndex: 999, position: 'absolute', top: 188, right: 17,}}>
           <Switch
             images={`sound`}
             value={timerStore.sound}
@@ -274,7 +297,7 @@ const TimerScreen = () => {
         </View>
 
         {/* VIDEO TOGGLE */}
-        <View style={{zIndex: 999, position: 'absolute', top: 188, right: 17, }}>
+        <View style={{zIndex: 999, position: 'absolute', top: 235, right: 17,}}>
           <Switch
             images={`eye`}
             value={timerStore.video}
@@ -285,142 +308,262 @@ const TimerScreen = () => {
           />
         </View>
 
-        {/* COUNTDOWN TOGGLE */}
-        <View style={{zIndex: 999, position: 'absolute', top: 235, right: 17, }}>
-          <Switch
-            images={`count`}
-            value={timerStore.countDown}
-            onPress={() => {
-              timerStore.toggleCountDown()
-              saveToggleCountDown(timerStore.countDown)
-            }}
-          />
-        </View>
-
         <TouchableOpacity
           onPress={() => setModalVisible(!modalVisible)}
           style={[styles.menuFacade, {zIndex: modalVisible ? 98 : -98,}]}
-        />
+        >
+          {/* <BlurView
+            style={{width: '100%', height: '110%'}}
+            blurType='dark'
+            blurAmount={1}
+            reducedTransparencyFallbackColor={'transparent'}
+          /> */}
+        </TouchableOpacity>
+
         <View style={styles.menuView}>
           <View style={styles.modalView}>
 
+            {Platform.OS == 'android' &&
+              <View style={styles.dialsContainer}>
 
-            {/* ROUND DURATION */}
-            <View style={styles.numberDialContainer}>
-            <View style={{alignItems: 'center'}}>
-              <Picker
-                style={{
-                  width: 55,
-                  right: 21,
-                  borderRadius: 7,
-                  backgroundColor: 'transparent',
-                }}
-                itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.55,}]}
-                selectedValue={minutesCounted}
-                onValueChange={(itemValue, itemIndex) =>
-                  setMinutesCounted(itemValue)
-                }>
-                {minutesCount.map(mC => (
-                  <Picker.Item label={`${mC}`} value={mC} />
-                ))}
-              </Picker>
-              <View style={{position: 'absolute', top: 85,}}>
-                <Text style={{fontSize: 33, color: offWhite}}>:</Text>
-              </View>
-              <Picker
-                style={{
-                  position: 'absolute',
-                  left: 46,
-                  width: 55,
-                  borderRadius: 7,
-                  backgroundColor: 'transparent',
-                }}
-                itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.66,}]}
-                selectedValue={secondsCounted}
-                onValueChange={(itemValue, itemIndex) => 
-                  setSecondsCounted(itemValue)
-                }>
-                {secondsCount.map(sC => (
-                  <Picker.Item label={`${sC}`} value={sC} />
-                ))}
-              </Picker>
-            </View>
-            </View>
+                {/* ROUND DURATION */}
+                {/* <View style={styles.numberDialContainer}>
+                  <View style={{alignItems: 'center'}}>
+                    <Slider value={minutesCounted} color={red} width={44} right={44} />
+                    <Picker
+                      style={{
+                        zIndex: 999,
+                        position: 'absolute',
+                        width: 44,
+                        height: 147,
+                        right: 60,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                      }}
+                      itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.55,}]}
+                      selectedValue={minutesCounted}
+                      onValueChange={(itemValue) =>
+                        setMinutesCounted(itemValue)
+                      }>
+                      {minutesCount.map(mC => (
+                        <Picker.Item label={`${mC}`} value={mC} />
+                      ))}
+                    </Picker>
+                    <View style={{position: 'absolute', top: 47, right: 53,}}>
+                      <Text style={{fontSize: 33, color: offWhite}}>:</Text>
+                    </View>
+                    <View style={{position: 'absolute'}}>
+                      <Slider value={secondsCounted} color={red} width={44} left={8} />
+                    </View>
+                    <Picker
+                      style={{
+                        zIndex: 999,
+                        position: 'absolute',
+                        width: 44,
+                        height: 147,
+                        left: 25,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                      }}
+                      itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.66,}]}
+                      selectedValue={secondsCounted}
+                      onValueChange={(itemValue) => 
+                        setSecondsCounted(itemValue)
+                      }>
+                      {secondsCount.map(sC => (
+                        <Picker.Item label={`${sC}`} value={sC} />
+                      ))}
+                    </Picker>
+                  </View>
+                </View> */}
 
-            {/* ROUNDS QUANTITY */}
-            <View style={styles.numberDialContainer}>
-              <View style={{alignItems: 'center'}}>
-                <Picker
-                  style={{
-                    position: 'absolute',
-                    width: 66,
-                    borderRadius: 7,
-                    backgroundColor: 'transparent',
-                  }}
-                  itemStyle={[styles.numberDial, { color: white, shadowColor: white, shadowOpacity: 0.77,}]}
-                  selectedValue={rounds}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setRounds(itemValue)
-                  }>
-                  {roundsCount.map(r => (
-                    <Picker.Item label={`${r}`} value={r} />
-                  ))}
-                </Picker>
-              </View>
-            </View>
+                {/* ROUNDS QUANTITY */}
+                {/* <View style={styles.numberDialContainer}>
+                  <View style={{alignItems: 'center'}}>
+                    <Slider value={rounds} color={white} width={55} />
+                    <Picker
+                      style={{
+                        zIndex: 999,
+                        position: 'absolute',
+                        width: 55,
+                        height: 147,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                      }}
+                      itemStyle={[styles.numberDial, { color: white, shadowColor: white, shadowOpacity: 0.77,}]}
+                      selectedValue={rounds}
+                      onValueChange={(itemValue) =>
+                        setRounds(itemValue)
+                      }>
+                      {roundsCount.map(r => (
+                        <Picker.Item label={`${r}`} value={r} />
+                      ))}
+                    </Picker>
+                  </View>
+                </View> */}
 
-            {/* REST DURATION */}
-            <View style={styles.numberDialContainer}>
-            <View style={{alignItems: 'center'}}>
-              <Picker
-                style={{
-                  width: 55,
-                  right: 21,
-                  borderRadius: 7,
-                  backgroundColor: 'transparent',
-                }}
-                itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94, }]}
-                selectedValue={minutesRested}
-                onValueChange={(itemValue, itemIndex) =>
-                  setMinutesRested(itemValue)
-                }>
-                {minutesRest.map(mR => (
-                  <Picker.Item label={`${mR}`} value={mR} />
-                ))}
-              </Picker>
-              <View style={{position: 'absolute', top: 85,}}>
-                <Text style={{fontSize: 33, color: offWhite}}>:</Text>
+
+                {/* REST DURATION */}
+                {/* <View style={styles.numberDialContainer}>
+                  <View style={{alignItems: 'center'}}>
+                    <Slider value={minutesRested} color={blue} width={44} right={8} />
+                    <Picker
+                      style={{
+                        zIndex: 999,
+                        position: 'absolute',
+                        width: 44,
+                        height: 147,
+                        right: 25,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                      }}
+                      itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94,}]}
+                      selectedValue={minutesRested}
+                      onValueChange={(itemValue) =>
+                        setMinutesRested(itemValue)
+                      }>
+                      {minutesRest.map(mR => (
+                        <Picker.Item label={`${mR}`} value={mR} />
+                      ))}
+                    </Picker>
+                    <View style={{position: 'absolute', top: 47, left: 53,}}>
+                      <Text style={{fontSize: 33, color: offWhite}}>:</Text>
+                    </View>
+                    <View style={{position: 'absolute'}}>
+                      <Slider value={secondsRested} color={blue} width={44} left={44} />
+                    </View>
+                    <Picker
+                      style={{
+                        zIndex: 999,
+                        position: 'absolute',
+                        width: 44,
+                        height: 147,
+                        left: 60,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                      }}
+                      itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94,}]}
+                      selectedValue={secondsRested}
+                      onValueChange={(itemValue) =>
+                        setSecondsRested(itemValue)
+                      }>
+                      {secondsRest.map(sR => (
+                        <Picker.Item label={`${sR}`} value={sR} />
+                      ))}
+                    </Picker>
+                  </View>
+                </View> */}
+
               </View>
-              <Picker
-                style={{
-                  position: 'absolute',
-                  left: 46,
-                  width: 55,
-                  borderRadius: 7,
-                  backgroundColor: 'transparent',
-                }}
-                itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.94,}]}
-                selectedValue={secondsRested}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSecondsRested(itemValue)
-                }>
-                {secondsRest.map(sR => (
-                  <Picker.Item label={`${sR}`} value={sR} />
-                ))}
-              </Picker>
-            </View>
-            </View>
+            }
+
+            {Platform.OS == 'ios' &&
+              <View style={styles.dialsContainer}>
+                {/* ROUND DURATION */}
+                <View style={styles.dialSlider}>
+                  <Picker
+                    style={{
+                      width: '100%',
+                      borderRadius: 7,
+                      backgroundColor: 'transparent',
+                    }}
+                    itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.47,}]}
+                    selectedValue={minutesCounted}
+                    onValueChange={(itemValue) =>
+                      setMinutesCounted(itemValue)
+                    }>
+                    {minutesCount.map(mC => (
+                      <Picker.Item label={`${mC}`} value={mC} />
+                    ))}
+                  </Picker>
+                </View>
+                <View style={styles.dialDivider}>
+                  <Text style={{fontSize: 33, color: offWhite, bottom: 2,}}>:</Text>
+                </View>
+                <View style={styles.dialSlider}>
+                  <Picker
+                    style={{
+                      width: '100%',
+                      borderRadius: 7,
+                      backgroundColor: 'transparent',
+                    }}
+                    itemStyle={[styles.numberDial, {color: red, shadowColor: red, shadowOpacity: 0.47,}]}
+                    selectedValue={secondsCounted}
+                    onValueChange={(itemValue) => 
+                      setSecondsCounted(itemValue)
+                    }>
+                    {secondsCount.map(sC => (
+                      <Picker.Item label={`${sC}`} value={sC} />
+                    ))}
+                  </Picker>
+                </View>
+
+                {/* ROUNDS QUANTITY */}
+                <View style={[styles.dialSlider, {marginHorizontal: '3%'}]}>
+                  <Picker
+                    style={{
+                      width: '100%',
+                      borderRadius: 7,
+                      backgroundColor: 'transparent',
+                    }}
+                    itemStyle={[styles.numberDial, { color: white, shadowColor: white, shadowOpacity: 0.47,}]}
+                    selectedValue={rounds}
+                    onValueChange={(itemValue) =>
+                      setRounds(itemValue)
+                    }>
+                    {roundsCount.map(r => (
+                      <Picker.Item label={`${r}`} value={r} />
+                    ))}
+                  </Picker>
+                </View>
+
+                {/* REST DURATION */}
+                <View style={styles.dialSlider}>
+                  <Picker
+                    style={{
+                      width: '100%',
+                      borderRadius: 7,
+                      backgroundColor: 'transparent',
+                    }}
+                    itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.47,}]}
+                    selectedValue={minutesRested}
+                    onValueChange={(itemValue) =>
+                      setMinutesRested(itemValue)
+                    }>
+                    {minutesRest.map(mR => (
+                      <Picker.Item label={`${mR}`} value={mR} />
+                    ))}
+                  </Picker>
+                </View>
+                <View style={styles.dialDivider}>
+                  <Text style={{fontSize: 33, color: offWhite, bottom: 2,}}>:</Text>
+                </View>
+                <View style={styles.dialSlider}>
+                  <Picker
+                    style={{
+                      width: '100%',
+                      borderRadius: 7,
+                      backgroundColor: 'transparent',
+                    }}
+                    itemStyle={[styles.numberDial, {color: blue, shadowColor: blue, shadowOpacity: 0.47,}]}
+                    selectedValue={secondsRested}
+                    onValueChange={(itemValue) =>
+                      setSecondsRested(itemValue)
+                    }>
+                    {secondsRest.map(sR => (
+                      <Picker.Item label={`${sR}`} value={sR} />
+                    ))}
+                  </Picker>
+                </View>
+
+              </View>
+            }
 
             {/* SET TIMER BUTTON */}
             <TouchableOpacity
-              style={[styles.setButton, styles.buttonClose]}
+              style={styles.setButton}
               onPress={() => {
                 saveTimer(
                   parseInt(rounds),
                   (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
                   (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
                 )
-                timerStore.setTimerStore(
+                timerStore.setTimer(
                   parseInt(rounds),
                   (parseInt(minutesCounted) * 60 || 0) + parseInt(secondsCounted) || 0,
                   (parseInt(minutesRested) * 60 || 0) + parseInt(secondsRested) || 0
@@ -438,20 +581,28 @@ const TimerScreen = () => {
       {/* TIMER VIEW */}
       <DoubleTap
         singleTap={() => {
-          if (timerStore.isRunning) {
-            mainTimer.current.pause()
-            timerStore.pauseTimer()
+          if (timerStore.countDown && timerStore.isInit) {
+            timerStore.setDisplayCountDown(true)
+            countDownTimer.current.start()
           } else {
-            if (finished) {
-              timerStore.resetTimerStore()
-              mainTimer.current.reset()
-              setFinished(false)
+            if (timerStore.isRunning) {
+              mainTimer.current.pause()
+              timerStore.pauseTimer()
+            } else {
+              if (finished) {
+                mainTimer.current.reset()
+                timerStore.resetTimer()
+                setFinished(false)
+              }
+              mainTimer.current.start()
+              timerStore.startTimer()
             }
-            mainTimer.current.start()
-            timerStore.startTimer()
           }
         }}
         doubleTap={() => {
+          timerStore.setDisplayCountDown(false)
+          countDownTimer.current.pause()
+          countDownTimer.current.reset()
           restoreTimer()
           timerStore.resetTimer()
         }}
@@ -467,13 +618,15 @@ const TimerScreen = () => {
 
           {/* ROUND STATUS */}
           {
-            timerStore.currRound + 1 >= timerStore.numRounds
-            ? timerStore.isRest
-              ? <Text style={styles.roundText}>Next: Final Rd</Text>
-              : <Text style={styles.roundText}>Rd {timerStore.currRound} | {timerStore.numRounds}</Text>
-            : timerStore.isRest
-              ? <Text style={styles.roundText}>Next: Rd {timerStore.currRound + 1}</Text>
-              : <Text style={styles.roundText}>Rd {timerStore.currRound} | {timerStore.numRounds}</Text>
+            finished
+              ? <Text style={styles.roundText}>End</Text>
+              : timerStore.currRound + 1 >= timerStore.numRounds
+              ? timerStore.isRest
+                ? <Text style={styles.roundText}>Next: Final Rd</Text>
+                : <Text style={styles.roundText}>Rd {timerStore.currRound} | {timerStore.numRounds}</Text>
+              : timerStore.isRest
+                ? <Text style={styles.roundText}>Next: Rd {timerStore.currRound + 1}</Text>
+                : <Text style={styles.roundText}>Rd {timerStore.currRound} | {timerStore.numRounds}</Text>
           }
 
           {/* TIMER */}
@@ -514,48 +667,89 @@ const TimerScreen = () => {
                 }
               }
             ]}>
-            <View>
-                <Text>
 
-                  {/* TIMER MINUTES */}
-                  <View>
-                    <Text
-                      style={[styles.timerText, {
-                        color: timerStore.isRest ? blue : red,
-                        shadowColor: timerStore.isRest ? blue : red,
-                      }]}
-                    >
-                      <Timer.Minutes />
-                    </Text>
-                  </View>
+            <View style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap',}}>
 
-                  {/* TIMER DIVIDER */}
-                  <View>
-                    <Text
-                      style={{
-                        fontFamily: 'MiedingerLightW00-Regular',
-                        fontSize: 74,
-                        marginBottom: 9,
-                        color: offWhite,
-                        paddingHorizontal: 3,
-                      }}
-                    >:</Text>
-                  </View>
+              {/* TIMER MINUTES */}
+              <View style={{width: windowWidth,}}>
+                <Text
+                  style={[styles.timerText, {
+                    color: timerStore.isRest ? blue : red,
+                    shadowColor: timerStore.isRest ? blue : red,
+                    textAlign: 'right'
+                  }]}
+                >
+                  <Timer.Minutes />
+                </Text>
+              </View>
 
-                  {/* TIMER SECONDS */}
-                  <View>
-                    <Text
-                      style={[styles.timerText, {
-                        color: timerStore.isRest ? blue : red,
-                        shadowColor: timerStore.isRest ? blue : red,
-                      }]}
-                    >
-                      <Timer.Seconds />
-                    </Text>
-                  </View>
-              </Text>
+              {/* TIMER DIVIDER */}
+              <View style={{width: windowWidth / 13, alignItems: 'center',}}>
+                <Text
+                  style={{
+                    fontFamily: 'MiedingerLightW00-Regular',
+                    fontSize: 77,
+                    color: offWhite,
+                    bottom: 9,
+                  }}
+                  >:</Text>
+              </View>
+
+              {/* TIMER SECONDS */}
+              <View style={{width: windowWidth,}}>
+                <Text
+                  style={[styles.timerText, {
+                    color: timerStore.isRest ? blue : red,
+                    shadowColor: timerStore.isRest ? blue : red,
+                  }]}
+                >
+                  <Timer.Seconds />
+                </Text>
+              </View>
             </View>
           </Timer>
+          {/* COUNTDOWN */}
+          <CountDown
+            ref={countDownTimer}
+            initialTime={toSeconds(10)}
+            direction="backward"
+            startImmediately={false}
+            timeToUpdate={10}
+            onReset={() => countDownTimer.current.setTime(toSeconds(10))}
+            formatValue={(value) => `${value + 1 > 10 ? '' : value + 1}`}
+            checkpoints={[
+              {
+                time: toSeconds(0),
+                callback: () => {
+                  countDownTimer.current.pause()
+                  countDownTimer.current.reset()
+                  mainTimer.current.start()
+                  timerStore.setDisplayCountDown(false)
+                  timerStore.startTimer()
+                }
+              },
+            ]}
+          >
+            <View style={{
+              width: 100,
+              height: 100,
+              position: 'absolute',
+              alignItems: 'center',
+              alignContent: 'center',
+              top: 120,
+            }}>
+              <Text
+                style={[styles.timerText, {
+                  fontSize: 47,
+                  color: white,
+                  shadowColor: white,
+                  display: timerStore.displayCountDown ? 'flex' : 'none',
+                }]}
+              >
+                <CountDown.Seconds/>
+              </Text>
+            </View>
+          </CountDown>
         </View>
       </DoubleTap>
     </View>
@@ -576,16 +770,13 @@ const styles = StyleSheet.create({
     top: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.77)',
   },
-  // menuView: {
-  //   position: 'absolute',
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   marginTop: 22,
-  //   width: '100%',
-  //   height: '47%',
-  //   bottom: 0,
-  // },
+  menuView: {
+    zIndex: 99,
+    position: 'absolute',
+    width: '100%',
+    height: '47%',
+    bottom: 0,
+  },
   menuFacade: {
     position: 'absolute',
     flex: 1,
@@ -596,35 +787,52 @@ const styles = StyleSheet.create({
     height: '100%',
     top: 0,
   },
-  menuView: {
-    zIndex: 99,
-    position: 'absolute',
+  modalView: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
     width: '100%',
-    height: '47%',
-    bottom: -47,
+    height: '100%',
+    padding: 17,
   },
-  modalView: {
+  dialsContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 13,
+    // alignContent: 'flex-start',
+    // height: '70%',
     width: '100%',
+  },
+  dialSlider: {
+    width: '15%',
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0)',
-    borderRadius: 7,
-    padding: 33,
-    shadowColor: white,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  dialDivider: {
+    width: '2%',
+    height: '100%',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  numberDial: {
     shadowOffset: {
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    // elevation: 5,
   },
+  // numberDialContainer: {
+  //   width: '30%',
+  //   height: '20%',
+  //   marginTop: '7%',
+  //   backgroundColor: 'red',
+  // },
   buttonContainer: {
     zIndex: 999,
     width: 33,
@@ -653,9 +861,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.94,
     shadowRadius: 4,
-    elevation: 5,
+    // elevation: 5,
   },
   timerText: {
+    // display: 'flex', flexDirection: 'row', flexWrap: 'nowrap',
     fontFamily: 'MiedingerLightW00-Regular',
     fontSize: 74,
     shadowOffset: {
@@ -664,35 +873,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.94,
     shadowRadius: 4,
-    elevation: 5,
-  },
-  backgroundVideo: {
-    zIndex: -1,
-    height: '100%',
-    width: '100%',
-    position: 'absolute',
-  },
-  numberDial: {
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  numberDialContainer: {
-    width: '30%',
-    height: '20%',
-    marginTop: '7%',
+    // elevation: 5,
   },
   setButton: {
-    position: 'absolute',
+    // position: 'absolute',
+    alignContent: 'flex-end',
     height: 47,
     width: '80%',
-    bottom: '23%',
+    bottom: 13,
     borderRadius: 7,
     padding: 10,
-    elevation: 2,
+    backgroundColor: 'rgba(255,255,255,0.13)',
+    // elevation: 2,
   },
   setButtonText: {
     height: 27,
@@ -701,8 +893,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  buttonClose: {
-    backgroundColor: 'rgba(255,255,255,0.13)',
+  backgroundVideo: {
+    zIndex: -1,
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
   },
 })
 

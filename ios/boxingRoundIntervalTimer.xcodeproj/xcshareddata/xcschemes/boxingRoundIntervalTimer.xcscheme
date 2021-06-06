@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "boxingRoundIntervalTimer.app"
-               BlueprintName = "boxingRoundIntervalTimer"
-               ReferencedContainer = "container:boxingRoundIntervalTimer.xcodeproj">
+               BuildableName = "BRIT.app"
+               BlueprintName = "BRIT"
+               ReferencedContainer = "container:BRIT.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "boxingRoundIntervalTimerTests.xctest"
-               BlueprintName = "boxingRoundIntervalTimerTests"
-               ReferencedContainer = "container:boxingRoundIntervalTimer.xcodeproj">
+               BuildableName = "BRITTests.xctest"
+               BlueprintName = "BRITTests"
+               ReferencedContainer = "container:BRIT.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "boxingRoundIntervalTimer.app"
-            BlueprintName = "boxingRoundIntervalTimer"
-            ReferencedContainer = "container:boxingRoundIntervalTimer.xcodeproj">
+            BuildableName = "BRIT.app"
+            BlueprintName = "BRIT"
+            ReferencedContainer = "container:BRIT.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "boxingRoundIntervalTimer.app"
-            BlueprintName = "boxingRoundIntervalTimer"
-            ReferencedContainer = "container:boxingRoundIntervalTimer.xcodeproj">
+            BuildableName = "BRIT.app"
+            BlueprintName = "BRIT"
+            ReferencedContainer = "container:BRIT.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

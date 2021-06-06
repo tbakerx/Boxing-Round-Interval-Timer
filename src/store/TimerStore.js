@@ -1,6 +1,8 @@
 import { observable, action } from 'mobx'
-import timerProfiles from '../profiles/timerProfiles'
-// import Sound from 'react-native-sound' // TODO move sound import to assets directory
+import Sound from 'react-native-sound'
+import bellOne from '../../assets/sounds/bellOne.mp3'
+import bellThree from '../../assets/sounds/bellThree.mp3'
+import clacker from '../../assets/sounds/clacker.mp3'
 
 class TimerStore {
   @observable title
@@ -14,11 +16,13 @@ class TimerStore {
   @observable sound
   @observable video
   @observable countDown
+  @observable displayCountDown
 
   roundEndSound = null
   clackerSound = null
 
   constructor() {
+    this.isInit = true
     this.title = 'BOXING'
     this.numRounds = 12
     this.currRound = 1
@@ -30,48 +34,15 @@ class TimerStore {
     this.sound = true
     this.video = true
     this.countDown = false
-
+    this.displayCountDown = false
     this.initializeSounds()
   }
 
   initializeSounds = () => {
-    console.log('play sound') // TODO move sound import to assets directory
-    // Sound.setCategory('Playback')
-
-    // this.roundStartSound = new Sound(
-    //   'round_start.mp3',
-    //   Sound.MAIN_BUNDLE,
-    //   (error) => {
-    //     if (error) {
-    //       console.log('Failed to load sound effect', error)
-    //       return
-    //     } else {
-    //       console.log('Round Start sound loaded successfully')
-    //     }
-    //   }
-    // )
-
-    // this.roundEndSound = new Sound(
-    //   'round_end.mp3',
-    //   Sound.MAIN_BUNDLE,
-    //   (error) => {
-    //     if (error) {
-    //       console.log('Failed to load sound effect', error)
-    //       return
-    //     } else {
-    //       console.log('Round End sound loaded successfully')
-    //     }
-    //   }
-    // )
-
-    // this.clackerSound = new Sound('clacker.mp3', Sound.MAIN_BUNDLE, (error) => {
-    //   if (error) {
-    //     console.log('Failed to load sound effect', error)
-    //     return
-    //   } else {
-    //     console.log('Clacker sound loaded successfully')
-    //   }
-    // })
+    Sound.setCategory('Playback')
+    this.roundStartSound = new Sound(bellOne)
+    this.roundEndSound = new Sound(bellThree)
+    this.clackerSound = new Sound(clacker)
   }
 
   @action loadProfile = (profile) => {
@@ -86,6 +57,10 @@ class TimerStore {
   }
 
   @action startTimer = () => {
+    if (this.isInit) {
+      this.playRoundStart()
+    }
+    this.isInit = false
     this.isRunning = true
   }
 
@@ -94,6 +69,7 @@ class TimerStore {
   }
 
   @action resetTimer = () => {
+    this.isInit = true
     this.currRound = 1
     this.isRunning = false
     this.isRest = false
@@ -103,19 +79,14 @@ class TimerStore {
     this.isRest = false
     this.currRound++
     this.roundDuration = this.roundDuration
+    this.playRoundStart()
   }
 
   @action setRest = () => {
     this.isRest = true
   }
 
-  @action resetTimerStore = () => {
-    this.currRound = 1
-    this.isRunning = false
-    this.isRest = false
-  }
-
-  @action setTimerStore = (rounds, count, rest) => {
+  @action setTimer = (rounds, count, rest) => {
     this.numRounds = rounds
     this.roundDuration = count
     this.restDuration = rest
@@ -146,36 +117,40 @@ class TimerStore {
     this.countDown = !this.countDown
   }
 
+  @action setDisplayCountDown = val => {
+    this.displayCountDown = val
+  }
+
   @action playRoundStart = () => {
     if (this.sound) {
-      console.log('play round start') // TODO move sound import to assets directory
-      // if (!this.roundStartSound) {
-      //   console.log('Sound not loaded')
-      // } else {
-      //   this.roundStartSound.play()
-      // }
+      if (!this.roundStartSound) {
+        console.log('Sound not loaded')
+      } else {
+        console.log('play start round')
+        this.roundStartSound.play()
+      }
     }
   }
 
   @action playRoundEnd = () => {
-    if (this.sound) {      
-      console.log('play round end') // TODO move sound import to assets directory
-      // if (!this.roundEndSound) {
-      //   console.log('Sound not loaded')
-      // } else {
-      //   this.roundEndSound.play()
-      // }
+    if (this.sound && !this.isRest) {      
+      if (!this.roundEndSound) {
+        console.log('Sound not loaded')
+      } else {
+        console.log('play end round')
+        this.roundEndSound.play()
+      }
     }
   }
 
   @action playClacker = () => {
-    if (this.sound) {      
-      console.log('play clacker') // TODO move sound import to assets directory
-      // if (!this.clackerSound) {
-      //   console.log('Sound not loaded')
-      // } else {
-      //   this.clackerSound.play()
-      // }
+    if (this.sound && !this.isRest) {      
+      if (!this.clackerSound) {
+        console.log('Sound not loaded')
+      } else {
+        console.log('play clacker')
+        this.clackerSound.play()
+      }
     }
   }
 
