@@ -1,4 +1,5 @@
 {
   "name": "boxingRoundIntervalTimer",
-  "displayName": "Boxing Round Interval Timer"
+  "displayName": "Boxing Round Interval Timer",
+  "orientation": "portrait"
 }

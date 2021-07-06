@@ -3,6 +3,7 @@ import Sound from 'react-native-sound'
 import bellOne from '../../assets/sounds/bellOne.mp3'
 import bellThree from '../../assets/sounds/bellThree.mp3'
 import clacker from '../../assets/sounds/clacker.mp3'
+import clock from '../../assets/sounds/clock.mp3'
 
 class TimerStore {
   @observable title
@@ -39,10 +40,14 @@ class TimerStore {
   }
 
   initializeSounds = () => {
-    Sound.setCategory('Playback')
+    // Sound.setCategory('Playback')
+    // Sound.setCategory('PlayAndRecord', true)
+    Sound.setCategory('Ambient', true)
+    Sound.setActive(true)
     this.roundStartSound = new Sound(bellOne)
     this.roundEndSound = new Sound(bellThree)
     this.clackerSound = new Sound(clacker)
+    this.clockSound = new Sound(clock)
   }
 
   @action loadProfile = (profile) => {
@@ -73,6 +78,10 @@ class TimerStore {
     this.currRound = 1
     this.isRunning = false
     this.isRest = false
+    this.roundStartSound.stop()
+    this.roundEndSound.stop()
+    this.clackerSound.stop()
+    this.clockSound.stop()
   }
 
   @action incrementRound = () => {
@@ -126,7 +135,6 @@ class TimerStore {
       if (!this.roundStartSound) {
         console.log('Sound not loaded')
       } else {
-        console.log('play start round')
         this.roundStartSound.play()
       }
     }
@@ -137,7 +145,6 @@ class TimerStore {
       if (!this.roundEndSound) {
         console.log('Sound not loaded')
       } else {
-        console.log('play end round')
         this.roundEndSound.play()
       }
     }
@@ -148,8 +155,17 @@ class TimerStore {
       if (!this.clackerSound) {
         console.log('Sound not loaded')
       } else {
-        console.log('play clacker')
         this.clackerSound.play()
+      }
+    }
+  }
+
+  @action playClock = () => {
+    if (this.sound) {      
+      if (!this.clockSound) {
+        console.log('Sound not loaded')
+      } else {
+        this.clockSound.play()
       }
     }
   }

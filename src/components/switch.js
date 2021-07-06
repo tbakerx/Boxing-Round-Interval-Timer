@@ -7,6 +7,12 @@ import {
   Image,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import soundOn from '../../assets/images/soundOn.png'
+import soundOff from '../../assets/images/soundOff.png'
+import eyeOn from '../../assets/images/eyeOn.png'
+import eyeOff from '../../assets/images/eyeOff.png'
+import countOn from '../../assets/images/countOn.png'
+import countOff from '../../assets/images/countOff.png'
 
 class LinearBorderComponent extends Component {
   render() {
@@ -53,16 +59,16 @@ function Switch({
   let onImage
   let offImage
   if (images === 'sound') {
-    onImage = require('../../assets/images/soundOn.png')
-    offImage = require('../../assets/images/soundOff.png')
+    onImage = soundOn
+    offImage = soundOff
   }
   if (images === 'eye') {
-    onImage = require('../../assets/images/eyeOn.png')
-    offImage = require('../../assets/images/eyeOff.png')
+    onImage = eyeOn
+    offImage = eyeOff
   }
   if (images === 'count') {
-    onImage = require('../../assets/images/countOn.png')
-    offImage = require('../../assets/images/countOff.png')
+    onImage = countOn
+    offImage = countOff
   }
 
   const [animXValue] = useState(new Animated.Value(value ? 1 : 0))
